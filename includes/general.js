@@ -23,7 +23,7 @@ Object.size = function(obj) {
 // change the screen view
 function screen(view) {
   cl("Changing to "+view+"!");
-  $('#battle, #menu, #shop, #settings, #deckbuilder, #guilds, #trophies').hide();
+  $('#battle, #menu, #shop, #settings, #deckbuilder, #guilds, #trophies, #cutscene').hide();
   $('#'+view).show();
   if(view=='shop') {shopTab('recipes');}
   if(view=='menu') {$('#logo, #extra').show(); $('#menu .mode').addClass('ninja');}
