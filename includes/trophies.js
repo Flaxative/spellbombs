@@ -109,7 +109,7 @@ for (var i = 0; i < subtypes.length; i++) {
 // trophies for killing affixed monsters
 for (var i = 0; i < affixes.length; i++) {
   if(affixes[i].length) {
-    cl(affixes[i]);
+    //cl(affixes[i]);
     trophies["KS"+affixes[i]] = {name: affixes[i]+' Slayer', text: 'Kill a '+affixes[i]+' monster', secret: true}
     }
   //trophies['AS'+disciplines[i]+'1'] = {name: br+' Bomber I', text: 'Assemble 10 '+br+' spellbombs', tied: br+'Bomber', goal: 10}
