@@ -70,9 +70,16 @@ function goldUp(gp) {
   }
   
 function displayGold() {
-  if(parseInt(localStorage.gold)>9999) {
-    gp2 = Math.floor(parseInt(localStorage.gold)/1000)+'k';
-    } else {gp2 = localStorage.gold;}
+  if(parseInt(localStorage.gold)>999999999) {
+    gp2 = Math.floor(parseInt(localStorage.gold)/1000000000)+'B';
+    } 
+  else if(parseInt(localStorage.gold)>999999) {
+    gp2 = Math.floor(parseInt(localStorage.gold)/1000000)+'M';
+    } 
+  else if(parseInt(localStorage.gold)>9999) {
+    gp2 = Math.floor(parseInt(localStorage.gold)/1000)+'K';
+    } 
+  else {gp2 = localStorage.gold;}
   $('.gold').html(gp2);
   }
   
