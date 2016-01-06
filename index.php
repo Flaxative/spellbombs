@@ -501,6 +501,7 @@ function storyStart() {
 </div>
 
 <div id="cutscene">
+  <header><a href="javascript:screen('menu');" id="home"> &nbsp; </a>Story</header>
   <div id="speakerL"></div>
   <div id="speakerR"></div>
   <div id="dialogue"><span class="speaker"></span><p>Blah blah.</p></div>

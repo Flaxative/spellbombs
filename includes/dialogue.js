@@ -23,5 +23,5 @@ function dialogue(d) {
 // dictionary of dialogues
 var dialogues = {
   C01: {name: 'Bert', text: 'Hello!', next: 'C02'},
-  C02: {name: 'Marx', text: 'Howdy!', side: 'R', clearL: false, callback: function() {tell("Let's go to battle!");}},
+  C02: {name: 'Marx', text: 'Howdy!', side: 'R', clearL: false, callback: function() {tell("Story mode isn't real yet unfortunately.");}},
   }
