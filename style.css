@@ -18,7 +18,7 @@ td {vertical-align: top; padding: 4px;}
 .bottom .focus {box-shadow: 0 0 10px 0 #ff0;}
 
 /* hide screens */
-#deckbuilder, #battle, #menu, #guilds, #trophies {display: none;}
+#deckbuilder, #battle, #menu, #guilds, #trophies, #cutscene {display: none;}
 
 
 #messages {position: absolute; top: 0; right: 1%; left: 1%;  z-index: 99; pointer-events:none;}
@@ -28,9 +28,9 @@ td {vertical-align: top; padding: 4px;}
   border-radius: 5px; box-shadow: 0 0 10px 2px #333; text-align: center;
   color: #fff; border: 2px solid #777; border-left-color:#aaa; border-top-color:#aaa;}
 .warning {color:#f00; font-weight: bold;
-  background: rgba(255,255,255,.99); border: 2px solid #b00; border-left-color:#f00; border-top-color:#f00;}
+  background: rgba(255,255,255,.95); border: 2px solid #b00; border-left-color:#f00; border-top-color:#f00;}
 .prize {color:#000; font-weight: bold;
-  background: rgba(255,255,0,.99); border: 2px solid #660; border-left-color:#aa0; border-top-color:#aa0;}
+  background: rgba(255,255,100,.95); border: 2px solid #660; border-left-color:#aa0; border-top-color:#aa0;}
 .tell:not(.prize) img, .abilities img {
   height: 16px; width: 16px; vertical-align: 0px; 
   background: #000; border-radius: 8px;
@@ -79,6 +79,29 @@ GUILD SELECTION
 ======= */
 
 #guilds p {margin: 10px;}
+
+
+
+/* =======
+MAIN MENU
+======= */
+
+#cutscene {background: url(battlefield.png) center center no-repeat; background-size: cover;
+  position: fixed !important; position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0; }
+#dialogue {position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(0,0,0,.7);
+  height: 35%;
+  color: #fff;
+  padding: 10px 14px;
+  }
+#dialogue .speaker { font-size: 120%;}
+#dialogue p {margin: 15px 0;}
+#speakerL {position: absolute; bottom: 0; left: 4px; width: 40%;}
+#speakerR {position: absolute; bottom: 0; right: 4px; width: 40%;}
+#speakerL img, #speakerR img {max-width: 100%;}
+
+
 
   
 /* =======

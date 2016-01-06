@@ -49,6 +49,7 @@ function tell(message, styles) {
 function warn(message) {tell(message, 'warning');}
 function prize(message) {tell(message, 'prize');}
   
+function hi() {tell('hi');}
 
 
 // init gold

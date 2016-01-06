@@ -21,6 +21,7 @@
   <script type="text/javascript" src="includes/battleFunctions.js"></script>
   <script type="text/javascript" src="includes/shop.js"></script>
   <script type="text/javascript" src="includes/trophies.js"></script>
+  <script type="text/javascript" src="includes/dialogue.js"></script>
   
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0" />
   <meta name="mobile-web-app-capable" content="yes" />
@@ -401,6 +402,8 @@ $(document).ready(function() {
     initiateDeck(localStorage.guild);
     // go to menu
     screen('menu');
+    //screen('cutscene');
+    //dialogue(dialogues.C01);
     }
   else {
     // otherwise go to guild selection
@@ -457,9 +460,15 @@ function normalStart() {
   }
 
 function storyStart() {
-  tell("No story mode yet.");
+  screen('cutscene');
+  dialogue('C01');
+  //tell("No story mode yet.");
   }
+  
 
+  
+
+  
 </script>
 
   
@@ -489,6 +498,12 @@ function storyStart() {
   <p><a href="javascript:pickGuild('A');">Zimuth (Astrology)</a> - Astrology is the weirdest discipline. Join Guild Zimuth if you like prophecies and magic.</p>
   <p><a href="javascript:pickGuild('N');">Eraya (Naturalism)</a> - Naturalism is a nurturing discipline. Join Guild Eraya if you like healing and buffing.</p>
   <p><a href="javascript:pickGuild('T');">Glurizol (Toxicology)</a> - Toxicology is the discipline of cruelty. Join Guild Glurizol if you like weakening your enemies.</p>
+</div>
+
+<div id="cutscene">
+  <div id="speakerL"></div>
+  <div id="speakerR"></div>
+  <div id="dialogue"><span class="speaker"></span><p>Blah blah.</p></div>
 </div>
 
 <div id="trophies">
