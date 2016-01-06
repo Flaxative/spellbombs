@@ -1,0 +1,476 @@
+/* =======
+GENERAL
+======= */
+html {}
+body {font-family: 'Droid Sans', sans-serif;}
+a {text-decoration: none;}
+.ninja {display: none !important;}
+  
+header {padding: 8px; font-family: 'Reenie Beanie', cursive; 
+  font-size: 2em; font-weight: bold;
+  text-align: center; background: #e0e0e0;
+  box-shadow: 0px 0px 10px 0px #777; margin-bottom: 4px;}
+  
+td {vertical-align: top; padding: 4px;}
+/* exception */ td.bench {padding: 0; margin: 4px;}
+
+.top .focus {box-shadow: 0 0 10px 0 #f00;}
+.bottom .focus {box-shadow: 0 0 10px 0 #ff0;}
+
+/* hide screens */
+#deckbuilder, #battle, #menu, #guilds, #trophies {display: none;}
+
+
+#messages {position: absolute; top: 0; right: 1%; left: 1%;  z-index: 99; pointer-events:none;}
+.tell {
+  display: none; pointer-events: auto;
+  margin: 20px 20px 0 20px; padding: 10px; background: rgba(0,0,0,.8);
+  border-radius: 5px; box-shadow: 0 0 10px 2px #333; text-align: center;
+  color: #fff; border: 2px solid #777; border-left-color:#aaa; border-top-color:#aaa;}
+.warning {color:#f00; font-weight: bold;
+  background: rgba(255,255,255,.99); border: 2px solid #b00; border-left-color:#f00; border-top-color:#f00;}
+.prize {color:#000; font-weight: bold;
+  background: rgba(255,255,0,.99); border: 2px solid #660; border-left-color:#aa0; border-top-color:#aa0;}
+.tell:not(.prize) img, .abilities img {
+  height: 16px; width: 16px; vertical-align: 0px; 
+  background: #000; border-radius: 8px;
+  margin: -2px 0 -2px 2px;
+  }
+.prize img {height: 20px; width: 20px; vertical-align: -4px;}
+.tell span {text-transform:capitalize;}
+  
+  
+/* =======
+MAIN MENU
+======= */
+
+#menu {
+  position: fixed !important; position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  background: #000 url(card-back.png) center center no-repeat; background-size: cover;
+  }
+
+#logo {background: transparent url(spellbomb-mania.png) center center no-repeat; background-size: 100% 100%;
+  margin: 30px 10%; height: 200px; border: 2px solid #000;}
+
+#menu a {display: block; margin: 30px 10%; text-align: center;
+  color: #ffee9b; background:rgba(0,0,0,.6); padding: 10px; font-weight: bold;
+  font-family: 'Reenie Beanie', cursive; font-size: 2em; border: 2px solid #000;}
+#menu a:active {color:#ff0; background: rgba(0,0,0,1);}
+
+#inventory {
+  position: fixed !important; position: absolute;
+  left: 0; right: 0; bottom: 0; text-align: center;
+  padding: 10px; background:rgba(0,0,0,.6); color: #fff;
+  height: 30px; line-height: 30px; font-size: 20px;
+  }
+#inventory img {display: inline-block; height: 30px; line-height: 38px; vertical-align: -9px;}
+  #inventory .guild {background: #000; border: 2px solid #fff; border-radius: 17px; margin-top: -2px;}
+.stat {display: inline-block; vertical-align: top; width: 30%; }
+  
+.mode {height: 52.66px; line-height: 52.66px; padding: 10px 20px !important;}
+#menu .mode.normal {text-align: right; background: rgba(0,0,0,1) url(mode-normal.png) center center no-repeat; background-size: cover;}
+#menu .mode.story {text-align: left; background: rgba(0,0,0,1) url(mode-story.png) top center no-repeat; background-size: cover;}
+#menu .mode.survival {text-align: right; background: rgba(0,0,0,1) url(mode-survival.png) center center no-repeat; background-size: cover;}
+
+  
+/* =======
+GUILD SELECTION
+======= */
+
+#guilds p {margin: 10px;}
+
+  
+/* =======
+TROPHIES
+======= */
+
+#trophies header {position: fixed; z-index: 5; top: 0; right: 0; left: 0; }
+#trophies {padding-top: 55px;}
+.case-head {padding: 4px 0; text-align: center;}
+#trophies .stat {text-align: center;}
+#trophies .stat {margin: 1%;}
+
+.trophy {margin: 10px; padding: 4px 10px 4px 42px; border-radius: 5px;
+  background: rgba(221,221,221,.3) url(trophy-black.png) 6px center no-repeat; background-size: 30px 84%;
+  border: 1px solid #000; height: 30px; line-height: 20px; position: relative; 
+  }
+.trophy.obtained {
+  background: rgba(221,221,221,.3) url(trophy-black.png) 6px center no-repeat; background-size: 30px 84%;
+  }
+.trophy:after {
+  content: '\A';
+  position: absolute; background: rgba(255,255,0,1);
+  z-index: -1;
+  top: 0; bottom: 0; left: 0; width: 0%;
+  }
+.trophy.obtained:after {width:100%;}
+.trophy span {text-transform: capitalize;}
+.trophy p {font-size: 60%; line-height: 10px;}
+.progress {float: right;}
+
+.trophy img {
+  height: 12px; width: 12px; vertical-align: 0px; 
+  background: #000; border-radius: 6px;
+  margin: -2px 0 -2px 2px;
+  }
+
+/* =======
+SHOPPE
+======= */
+
+.shop {text-align: center; background: #fff;
+position: fixed !important; position: absolute; 
+bottom: 0; right: 0; left: 0;}
+.reagents-shop, .recipes-shop, .content-shop, .cosmetics-shop {display: none;}
+.reagents-shop, .recipes-shop {
+  text-align: center; overflow-x: hidden; overflow-y: scroll;}
+
+#shop-tabs {font-size: 0; margin: -4px 0 0 0; 
+border-bottom: 1px solid #000; border-top: 1px solid #000; }
+#shop-tabs .wrapper {
+  font-size: 16px; text-align: center;
+  width: 25%; display: inline-block;
+  }
+#shop-tabs .inner {padding: 6px 0; display: block; background: #f7f7f7; color:#000; }
+#shop-tabs .inner.selected {font-weight: bold; background: #22659f; color: #fff;}
+
+.shop-head {padding: 4px 0;}
+
+.bought:not(.face) {background: #ddd !important;}
+.bought img {opacity: .7;}
+.check {width: 32px; height: 30px; background: url(check.png); margin: -20px 0 -20px 30px;}
+
+.buyable:not(.face) {background: #ffed64 !important;}
+.buyable:active {background: #fff5b1 !important;}
+.reagents-shop .cost { border: 1px solid #000; font-size: 15px; height: 20px; line-height: 20px;
+  background: #fafafa url('coins.png') 1px 1px no-repeat; border-radius: 0 0 8px 8px;
+  background-size: 18px 18px; padding-left: 16px; margin: 8px -6px 0 -6px;}
+
+.reagents-shop .reagent {margin: 10px 10px 20px 10px;}
+.reagents-shop .reagent:last-child {margin-bottom: 30px;}
+
+.recipes-shop .recipe {text-align: left; padding: 8px; margin: 10px; border: 1px solid #000;}
+.recipes-shop .cost, .recipes-shop .check {float: right; margin: -4px -5px 0 0;}
+.recipes-shop .cost {
+  border: 1px solid #000; font-size: 17px; letter-spacing: -.5px; height: 20px; line-height: 20px; vertical-align: middle;
+  background: #fafafa url('coins.png') 3px center no-repeat; background-size: 20px 20px;
+  padding: 2px 4px 2px 25px; margin: 0px;
+  }
+.recipes-shop .recipe .icon {margin-right: 3px;}
+.recipe .name {font-size: 14px; line-height: 26px; vertical-align: middle; margin-left: 4px;}
+
+.recipes-shop .function {background:#fafafa; margin: -10px 20px 10px 20px; padding: 4px; 
+  font-size: 12px; border-radius: 0 0 5px 5px; border: 1px solid #888; border-top: none;
+  }
+.recipes-shop .function img {
+  height: 16px; width: 16px; vertical-align: -2px; 
+  background: #000; border-radius: 8px;
+  margin: -2px 0 -2px 2px;
+  }
+  
+.recipes-shop .shop-head {font-size: 0;}
+.shop-head .icon { margin: 4px 4px -6px 4px; }
+.shop-head .icon.disabled img {opacity: .5;}
+.shop-head .icon.enabled {margin: 1px 1px -9px 1px; border: 3px solid #90efff; border-radius: 16px;
+  box-shadow: 0 0 10px 0px #7ed0dc;}
+  
+.shop-head .known {display: inline-block; height: 24px; font-size: 12px; line-height: 26px; 
+  border:1px solid #000; background: #fafafa; margin: 4px 4px 0 4px; padding: 0 4px;
+  width: 30px; text-align: center;}
+.shop-head .known.enabled {
+  border: 3px solid #90efff; margin: 2px 2px -2px 2px;
+  background: #333; color: #fff;
+  box-shadow: 0 0 10px 0px #7ed0dc;
+  }
+  
+.face {
+  display: inline-block; border: 1px solid #000;
+  margin: 10px 6px 20px 6px; vertical-align: middle;
+  width: 100px; height: 100px;
+  background: url(portraits/carelessExperiment.png) center center no-repeat;
+  background-size: auto 150px; 
+  }
+.face.enabled {
+  box-shadow: 0 0 10px 0px #7ed0dc, 0 0 10px 4px #7ed0dc, 1px 1px 0px 2px #90efff,
+  -1px 1px 0px 2px #90efff, 1px -1px 0px 2px #90efff, -1px -1px 0px 2px #90efff;
+  }
+.face .check {margin: -10px 0 -20px 80px; position: absolute; z-index: 1;}
+.face.bought:after {
+    content: "";
+    display: block;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,.3);
+    -moz-transition: all 1s;
+    -webkit-transition: all 1s;
+    transition: all 1s;
+  }
+.face .cost {margin: 100px 20px 10px 20px; border-radius: 0 0 8px 8px;
+  border: 1px solid #000; font-size: 15px; height: 20px; line-height: 20px;
+  background: #fafafa url('coins.png') 3px 1px no-repeat; 
+  background-size: 18px 18px; padding-left: 16px;
+  }
+
+/* =======
+SHARED: ICONS, REAGENT CARDS
+======= */
+
+.icon {width: 20px; height: 20px; font-size: 30px; vertical-align: top; line-height: 26px;
+  border-radius: 13px; background: #000; padding: 3px; color: #fff; display: inline-block;}
+.icon img {vertical-align: top; height: 20px; width: 20px;}
+
+
+.reagent .icon:nth-child(2) {margin-top: 10px;}
+.reagent .icon:only-child {margin-top: 15px;}
+
+.reagents-shop .icon:nth-child(3) {margin-top: 10px;}
+  
+.reagent {height: 60px; width: 38px; border: 1px solid #000; background: #fafafa;
+  text-align: center; padding: 10px 10px; margin: 4px; display: inline-block; vertical-align: top;}
+.reagent.vape {background:#ff6c66;}
+.reagent.curse {background:#84afdf}
+
+
+/* =======
+UI PIECES: BUTTONS, ETC.
+======= */  
+  #resign {height: 32px; width: 25px; display: block; float: left; background: transparent url(resign.png); margin-right: -25px;}
+  #resign:active {background-position: -25px 0;}
+  #home {height: 30px; width: 38px; display: block; float: left; background: transparent url(home.png); margin-right: -38px;}
+  #currency {height: 32px; min-width: 40px; display: block; float: right; background: transparent url(coins.png) center center no-repeat; background-size: contain; margin-left: -100%; font-size: .7em; line-height: 1.5em; font-weight: normal; text-shadow: 1px 1px 1px #000, -1px -1px 1px #000, -1px 1px 1px #000, 1px -1px 1px #000; color: #ff0; text-align: center;}
+
+  #currency {font-family: 'Droid Sans', sans-serif;}
+
+/* =======
+DECKBUILDER
+======= */
+  
+#deckbuilder {
+  height: 100%; position: fixed !important; position: absolute; 
+  top: 0; right: 0; left: 0; bottom: 0;}
+#deckbuilder .top {background: #fff; height: 100%;}
+#deckbuilder .bottom {background: #fee; 
+  position: fixed !important; position: absolute; bottom: 0; right: 0; left: 0;}
+
+.bottom {border-top: 1px solid #000;}
+.bottom.picks {display: none;}
+.bottom.start a {padding: 10px; 
+  font-family: 'Reenie Beanie', cursive; font-size: 2em; 
+  font-weight: bold; text-align: center;
+  display: block;
+  }
+
+.bottom.start a, #assemble {color: #ffee9b; background:#777;}
+.bottom.start a:active, #assemble:active {color:#ff0; background: #333;}
+    
+#deck {width: auto; padding: 4px; text-align: center; }
+
+#picks {width: auto; height: 90px; padding: 4px; 
+  text-align: center;}
+#picks .reagent, #hand .reagent {cursor: pointer;}
+  
+.next {padding: 4px 10px; margin: 10px;
+  background: #777; color: #fff; 
+  border: 1px solid #000; font-size: 14px;
+  }
+.next span {font-style: italic;}
+  
+/* =======
+BATTLE: HAND
+======= */
+  
+#discard .reagent, #discard {display: none;}
+#resources {width: 100%; margin-top: 50px;}
+
+#hand {height: 90px; padding: 5px; overflow: hidden;}
+#bench {width: 100px; height: 50px; padding: 4px; border: 1px solid #000; text-align: center;}
+#assemble {font-family: 'Reenie Beanie', cursive;
+    width: 100px; border: 1px solid #000; border-top: none; display: block; padding: 4px;
+    font-size: 30px; text-align: center;}
+  
+.bench .icon {margin: 10px 3px;}
+.bench {position: absolute; right:0; z-index: 5; background: #fcfcfc;}
+  
+#hand .reagent {margin-right: -70px;}
+#hand .reagent:hover {background:#fff; border-width: 2px; padding: 9px 9px;}
+#hand .reagent.vape:hover {background:#f00;}
+#hand .reagent:active {border-color:#555;}
+
+#recipe {margin: 4px; border: 1px solid #000; background: #fff; padding: 4px; height: 30px; line-height: 30px;}
+#recipe .icon {vertical-align: 15px; line-height: 38px; margin-right: 3px; }
+#recipe span {margin-left: 4px; font-size: 14px;}
+  
+#recipe span img {
+  height: 18px; width: 18px; vertical-align: -4px; padding: 2px;
+  background: #000; border-radius: 11px;
+  margin: -2px 0 -2px 2px;
+  }
+  
+/*#hand.dark img {opacity: .3;}*/
+#hand.dark .reagent {opacity: .1;}
+#hand.dark {background: #333;}
+#recipe.dark {background: #333; color: #333;}
+#recipe.dark img {opacity: .4;}
+   
+/* =======
+BATTLE: COMBATANTS
+======= */
+
+#battle {background: url(battlefield.png) center center no-repeat; background-size: cover; 
+  position: fixed !important; position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;}
+
+/*#baddie, #resources, #you, #battle {display: none;}*/
+#you { position: absolute;
+  bottom: 56px; right: 0; left: 0;}
+#baddie {margin-top: 4px;}  
+#baddie, #you, #baddie table, #you table {width: 100%;}
+
+#baddie .portrait, #you .portrait {width: auto;}
+#you .portrait img, #baddie .portrait img {max-width: 100%;}
+.portrait {border: 1px solid #000;
+  margin: 0 10px -11px 10px; border-radius: 10px 10px 0 0; overflow: hidden;}
+  
+#baddie .armor, #you .armor {background:url(armor.png);}
+#baddie .damage {background:url(vandalism.png);}    #you .damage {background:url(combat.png);}
+#baddie .hp, #you .hp {background:url(life.png); margin: 6px 0;}
+
+#baddie .armor, #baddie .damage, #baddie .hp,
+#you .armor, #you .damage, #you .hp {
+  font-size: 40px; font-weight: bold; width: 50px; height: 50px; 
+  text-align: center; white-space:nowrap; line-height: 50px; vertical-align: middle; background-repeat:no-repeat; background-position: center center; color: #fff; text-shadow: 0px 0px 4px #000, 0px 0px 4px #000;
+  }
+  
+.armor, .damage {min-width: 80px;}
+.title {text-align: center; font-size: 1.2em;}
+.abilities {text-align: center; font-size: .8em; line-height: 1em; height: 1em;}
+.title, .abilities {text-shadow: -1px -1px 8px #fff, -1px 1px 8px #fff, 1px -1px 8px #fff, 1px 1px 8px #fff;}
+
+#circle {margin-bottom: -80px;}
+#baddie .damage {line-height:80px;}
+
+.hp {background-position: 0 10px;}
+
+/* HP BAR */
+.hpbar {width: auto; height: 40px;  margin: 10px 4px -50px 4px; background: #fff;
+  border: 1px solid #000; border-radius: 10px; overflow: hidden; position: absolute; z-index: 1;left: 80px; right: 80px;}
+.hpbar .inner {background: #0f0; width: 100%; height: 100%; float: right;}
+.hp {position: absolute; z-index: 5;}
+.hp + .portrait {margin-top: 50px;}
+
+#victory {position: fixed !important; position: absolute; z-index: 10;
+  top: 0; right: 0; bottom: 0; left: 0;
+  padding: 100px 20px; text-align: center; color: #fff;
+  background: rgba(80,80,80,.9);}
+#victory h1 {font-size: 4em; font-weight: bold; line-height: 1.2em;} 
+#victory h1, #victory a { font-family: 'Reenie Beanie', cursive; }
+#victory a {font-size: 2em; color: #ffee9b;}
+#victory.clicked {background:rgba(0,0,0,.9);}
+#victory.clicked a {color:#ff0;}
+
+#you .left {height: 0; width: 0; position: fixed !important; position: absolute; 
+  left: 0; bottom: 0; z-index: 0;
+  border-bottom: 40px solid rgba(0,0,0,.6);
+  border-left: 80px solid rgba(0,0,0,.6);
+  border-top: 40px solid transparent; 
+  border-right: 80px solid transparent;
+  }
+
+#you .gold { position: fixed !important; position: absolute; 
+  left: 0; bottom: 0;
+  color: #fff; margin: 10px;
+  background: transparent url('coins.png') left top no-repeat;
+  background-size: 25px 25px;
+  font-size: 19px;
+  padding-left: 27px; height: 25px; line-height: 25px;
+  }
+
+.bench.masked {background: #777;}
+.masked #assemble, .masked #assemble:active {color: #aaa; background: #777;}
+.bench.masked img {
+  opacity: .5;
+  }
+  
+.splat {
+  position: absolute; font-size: 20px; font-weight: bold; line-height: 23px; color:#fff;
+  text-align: center; text-shadow: -1px -1px 1px #000, 1px 1px 1px #000, -1px 1px 1px #000, 1px -1px 1px #000;
+  }
+  
+.splat {
+  width: 40px; 
+  height: 23.09px;
+  margin: 11.55px 0; 
+}
+.splat.dmg {
+  background: #f00;
+  }
+.splat.hl {
+  background: #0f0;
+  }
+
+.splat:before,
+.splat:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+}
+
+.splat.dmg:before {
+  left: 0px;
+  bottom: 100%;
+  border-bottom: 11.55px solid #f00;
+}
+
+.splat.dmg:after {
+  top: 100%; left: 0px;
+  width: 0;
+  border-top: 11.55px solid #f00;
+}
+
+.splat.hl:before {
+  left: 0px;
+  bottom: 100%;
+  border-bottom: 11.55px solid #0f0;
+}
+
+.splat.hl:after {
+  top: 100%; left: 0px;
+  width: 0;
+  border-top: 11.55px solid #0f0;
+}
+
+.status-effects {
+  font-size: 12px;
+  color: #fff;
+  }
+#baddie .status-effects {
+  position: fixed !important; position: absolute;
+  left: 4px; top: 170px; height: 80px; width: 80px;
+  }
+#you .status-effects {
+  position: fixed !important; position: absolute;
+  right: 0; bottom: 0px; height: 80px; width: 80px;
+  }
+.effect {
+  display: inline-block; margin-right: 2px;
+  text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;
+  }
+
+
+/* =======
+SETTINGS
+======= */
+
+#settings p {margin: 10px; }
+/*
+.mode {padding: 6px; border: 1px solid #000; margin-right: -1px;
+  background: #c9c9c9; color: #000;
+  }
+.mode:first-of-type {border-radius: 10px 0 0 10px;}
+.mode:last-of-type {border-radius:  0 10px 10px 0;}
+.mode.selected {
+  background: #f0f0f0; box-shadow: 0px 0px 6px 2px #67b3c2 inset; color: #777;}
+  */
