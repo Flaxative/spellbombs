@@ -421,7 +421,7 @@ $(document).ready(function() {
     $('#menu .guild').attr('src', localStorage.guild+'.png');
     initiateDeck(localStorage.guild);
     // go to menu
-    if(localStorage[localStorage.guild+'Story']) {
+    if(parseInt(localStorage[localStorage.guild+'Story'])>0) {
       var storyNext = parseInt(localStorage[localStorage.guild+'Story'])+1;
       $('.mode.story').append('<span>Battle '+storyNext+'</span>');
       }
