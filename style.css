@@ -116,15 +116,15 @@ TROPHIES
 #trophies .stat {margin: 1%;}
 
 .trophy {margin: 10px; padding: 4px 10px 4px 42px; border-radius: 5px;
-  background: rgba(221,221,221,.3) url(trophy-black.png) 6px center no-repeat; background-size: 30px 84%;
+  background: rgba(221,221,221,.4) url(trophy-black.png) 6px center no-repeat; background-size: 30px 84%;
   border: 1px solid #000; height: 30px; line-height: 20px; position: relative; 
   }
 .trophy.obtained {
-  background: rgba(221,221,221,.3) url(trophy-black.png) 6px center no-repeat; background-size: 30px 84%;
+  background: rgba(221,221,221,.4) url(trophy-black.png) 6px center no-repeat; background-size: 30px 84%;
   }
 .trophy:after {
   content: '\A';
-  position: absolute; background: rgba(255,255,0,1);
+  position: absolute; background: rgba(0,255,0,1);
   z-index: -1;
   top: 0; bottom: 0; left: 0; width: 0%;
   }
