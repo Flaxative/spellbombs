@@ -28,6 +28,12 @@ if (localStorage.trophies) {
 if(!localStorage.collector) {localStorage.collector = 0;}
 if(!localStorage.sandbag) {localStorage.sandbag = 0;}
 if(!localStorage.resets) {localStorage.resets = 0;}
+if(!localStorage.AStory) {localStorage.AStory = 0;}
+if(!localStorage.CStory) {localStorage.CStory = 0;}
+if(!localStorage.MStory) {localStorage.MStory = 0;}
+if(!localStorage.NStory) {localStorage.NStory = 0;}
+if(!localStorage.RStory) {localStorage.RStory = 0;}
+if(!localStorage.TStory) {localStorage.TStory = 0;}
 
 // dictionary of trophies
 var trophies = {

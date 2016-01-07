@@ -107,6 +107,12 @@ function reset(hard) {
   localStorage.gold = 0;
   localStorage.mode = 'normal';
   localStorage.new = true;
+  localStorage.AStory = 0; 
+  localStorage.CStory = 0; 
+  localStorage.MStory = 0; 
+  localStorage.NStory = 0; 
+  localStorage.RStory = 0; 
+  localStorage.TStory = 0;
   localStorage.resets = parseInt(localStorage.resets)+1;
   
   if(hard) {resetTrophies();} // if hard reset, reset trophies

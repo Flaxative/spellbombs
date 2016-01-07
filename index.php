@@ -302,9 +302,13 @@ function showWin(level) {
     localStorage.roomsNormal = floors;
     hiScore("roomsNormal");
     }
-  if(localStorage.mode=="survival"&&floors>parseInt(localStorage.roomsSurvival)) {
+  else if(localStorage.mode=="survival"&&floors>parseInt(localStorage.roomsSurvival)) {
     localStorage.roomsSurvival = floors;
     hiScore("roomsSurvival");
+    }
+  else if(localStorage.mode=="story") {
+    //cl('you beat a story mode battle');
+    localStorage[localStorage.guild+'Story'] = parseInt(localStorage[localStorage.guild+'Story'])+1;
     }
   }
   
@@ -332,7 +336,10 @@ function initiatePicks() {
     $(this).appendTo($('#deck')).removeClass('focus').unbind();
     $('#picks').html('');
     if($('#deck .reagent').length>12) {promptTrash();}
-    else {deckTrophies(); bStart();}
+    else {deckTrophies(); 
+      if(localStorage.mode=="story") {storyStart();}
+      else {bStart();}
+      }
     });
   $('.bottom.start').hide();
   $('.bottom.picks').show();
@@ -351,7 +358,10 @@ function promptTrash() {
     $(this).remove();
     $('#deck .reagent').removeClass('focus').unbind();
     if($('#deck .reagent').length>12) {promptTrash();}
-    else {deckTrophies(); bStart();}
+    else {deckTrophies(); 
+      if(localStorage.mode=="story") {storyStart();}
+      else {bStart();}
+      }
     });
   }
   
@@ -458,10 +468,16 @@ function normalStart() {
   //tell("Normal mode enabled. No special rules.");
   bStart();
   }
-
+cl(next_monster);
 function storyStart() {
+  localStorage.mode = 'story';
+  tell('Story mode progress: '+localStorage.guild+localStorage[localStorage.guild+'Story']);
   screen('cutscene');
-  dialogue('C01');
+  cl(localStorage.guild+localStorage[localStorage.guild+'Story']);
+  dialogue(localStorage.guild+localStorage[localStorage.guild+'Story']);
+  next_monster_level = Math.min(Math.floor(parseInt(localStorage[localStorage.guild+'Story'])/3), 14);
+  next_monster = pickRandomProperty(monsters[next_monster_level]);
+  cl(next_monster);
   //tell("No story mode yet.");
   }
   
