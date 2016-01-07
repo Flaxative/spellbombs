@@ -27,17 +27,20 @@ function other() {return other_reagents[Math.floor(Math.random() * other_reagent
 
 // make reagent cards  
 function reAgent(code) {
+  var vapeChance = .28;
+  if(code.indexOf('v')>-1) {cl('this one always vapes'); vapeChance = 11; code = code.replace('v', ''); cl(code);}
+  if(code.indexOf('w')>-1) {cl('this one never vapes'); vapeChance = 0; code = code.replace('w', '');}
   //cl(code, code.length);
   if(code.length==1) { //cl("1 ingredient");
     var vape; var rand2 = Math.random(); //cl(rand2);
-    if(rand2<.28) {vape = ' vape';} else {vape = '';}
-    return '<div class="reagent'+vape+'"><div class="icon '+code+'" data-ingredient="'+code+'"><img src="'+code+'.png" /></div></div>';
+    if(rand2<vapeChance) {vape = ' vape';} else {vape = '';}
+    return '<div class="reagent'+vape+'" data-reagent="'+code+'"><div class="icon '+code+'" data-ingredient="'+code+'"><img src="'+code+'.png" /></div></div>';
     }
   else if (code.length==2) { //cl("2 ingredients");
-    return '<div class="reagent vape"><div class="icon '+code.substring(0,1)+'" data-ingredient="'+code.substring(0,1)+'"><img src="'+code.substring(0,1)+'.png" /></div><div class="icon '+code.substring(1,2)+'" data-ingredient="'+code.substring(1,2)+'"><img src="'+code.substring(1,2)+'.png" /></div></div>';
+    return '<div class="reagent vape" data-reagent="'+code+'"><div class="icon '+code.substring(0,1)+'" data-ingredient="'+code.substring(0,1)+'"><img src="'+code.substring(0,1)+'.png" /></div><div class="icon '+code.substring(1,2)+'" data-ingredient="'+code.substring(1,2)+'"><img src="'+code.substring(1,2)+'.png" /></div></div>';
     }
   else if (code.length==3) {
-    return '<div class="reagent '+code+'"><div class="icon '+code.substring(0,1)+'" data-ingredient="'+code.substring(0,1)+'"><img src="'+code.substring(0,1)+'.png" /></div><div class="icon '+code.substring(1,2)+'" data-ingredient="'+code.substring(1,2)+'"><img src="'+code.substring(1,2)+'.png" /></div></div>';
+    return '<div class="reagent '+code+'" data-reagent="'+code+'"><div class="icon '+code.substring(0,1)+'" data-ingredient="'+code.substring(0,1)+'"><img src="'+code.substring(0,1)+'.png" /></div><div class="icon '+code.substring(1,2)+'" data-ingredient="'+code.substring(1,2)+'"><img src="'+code.substring(1,2)+'.png" /></div></div>';
     }
   else {
     cl("we'll handle ability reagents later");
@@ -94,4 +97,24 @@ function initiateDeck(discipline) {
     i++;
     }
   
+  }
+  
+// functions to save and load deck lists (story mode)
+function saveDeck() {
+  localStorage.storyDeck = ''; 
+  $('#deck .reagent').each(function() {
+    var code = $(this).data('reagent');
+    if(localStorage.storyDeck.length>0) {localStorage.storyDeck += ',';}
+    localStorage.storyDeck += code;
+    if($(this).hasClass('vape')) {localStorage.storyDeck += 'v';} else {localStorage.storyDeck += 'w';}
+    });
+  cl(localStorage.storyDeck);
+  }
+function loadDeck() {
+  $('#deck').html('');
+  var reagents = localStorage.storyDeck.split(',');
+  cl(reagents);
+  $.each(reagents, function(index, value) {
+    $('#deck').append(reAgent(value));
+    });
   }

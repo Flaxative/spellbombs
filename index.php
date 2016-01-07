@@ -256,7 +256,7 @@ function bEnd(victory) {
   $('.splat').stop().remove();
   //clearInterval(drawLoop);          // clear draw loop
   discardAll(); shuffleDiscards();  // shuffle all cards back into deck
-  $('#bench .icon').remove(); circle.remove();  // clear active stuff in battle
+  $('#bench .icon').remove(); if(circle) {circle.remove();}  // clear active stuff in battle
   if(victory) {
     var st = enemy.subtype; // get subtype for stats
     // cl(st);
@@ -337,29 +337,38 @@ function initiatePicks() {
     $('#picks').html('');
     if($('#deck .reagent').length>12) {promptTrash();}
     else {deckTrophies(); 
-      if(localStorage.mode=="story") {storyStart();}
+      if(localStorage.mode=="story") {
+        saveDeck();
+        storyStart(); // go back to dialogue
+        }
       else {bStart();}
       }
     });
   $('.bottom.start').hide();
   $('.bottom.picks').show();
   
-  next_monster_level = Math.min(Math.floor(floors/3), 14);
-  //next_monster = pickRandomProperty(monsters[next_monster_level]);
-  nextMonster(next_monster_level);
-  $('.next span').text(monsters[next_monster_level][next_monster]["name"]);
+  if(localStorage.mode!='story') {
+    next_monster_level = Math.min(Math.floor(floors/3), 14);
+    //next_monster = pickRandomProperty(monsters[next_monster_level]);
+    nextMonster(next_monster_level);
+    $('.next span').text(monsters[next_monster_level][next_monster]["name"]);
+    }
   }
   
 function promptTrash() {
   //cl('triggering'); //debug
-  $('#deckbuilder header span').first().html('Trash a card from your deck!');
+  $('#deckbuilder header span').first().html('Trash a card');
+  tell('Max deck size is 12. Click a reagent to trash it from your deck.');
   $('#deck .reagent').addClass('focus').click(function() {
     //cl('hihi');
     $(this).remove();
     $('#deck .reagent').removeClass('focus').unbind();
     if($('#deck .reagent').length>12) {promptTrash();}
     else {deckTrophies(); 
-      if(localStorage.mode=="story") {storyStart();}
+      if(localStorage.mode=="story") {
+        saveDeck();
+        storyStart(); // go back to dialogue
+        }
       else {bStart();}
       }
     });
@@ -399,6 +408,7 @@ $(document).ready(function() {
   $('.floors').html(localStorage.roomsNormal);
   $('.trophies').html(localStorage.trophies);
   $('.roomsSurvival').text(localStorage.roomsSurvival);
+  
   // populate shop pages
   for (var i = 0; i < buyableLength; i++) { reagentDisplay(buyable_reagents[i]); }
   for (var i = 0; i < faces.length; i++) { faceDisplay(faces[i]); }
@@ -411,6 +421,10 @@ $(document).ready(function() {
     $('#menu .guild').attr('src', localStorage.guild+'.png');
     initiateDeck(localStorage.guild);
     // go to menu
+    if(localStorage[localStorage.guild+'Story']) {
+      var storyNext = parseInt(localStorage[localStorage.guild+'Story'])+1;
+      $('.mode.story').append('<span>Battle '+storyNext+'</span>');
+      }
     screen('menu');
     //screen('cutscene');
     //dialogue(dialogues.C01);
@@ -468,17 +482,26 @@ function normalStart() {
   //tell("Normal mode enabled. No special rules.");
   bStart();
   }
-cl(next_monster);
+  
+//cl(next_monster);
+
 function storyStart() {
-  localStorage.mode = 'story';
-  tell('Story mode progress: '+localStorage.guild+localStorage[localStorage.guild+'Story']);
-  screen('cutscene');
-  cl(localStorage.guild+localStorage[localStorage.guild+'Story']);
-  dialogue(localStorage.guild+localStorage[localStorage.guild+'Story']);
-  next_monster_level = Math.min(Math.floor(parseInt(localStorage[localStorage.guild+'Story'])/3), 14);
-  next_monster = pickRandomProperty(monsters[next_monster_level]);
-  cl(next_monster);
-  //tell("No story mode yet.");
+  if(dialogues[localStorage.guild+localStorage[localStorage.guild+'Story']]) {
+    localStorage.mode = 'story';
+    $('.next').remove();
+    var storyLevel = localStorage[localStorage.guild+'Story'];
+    tell('Story mode progress: '+localStorage.guild+storyLevel);
+    if(storyLevel>0) {loadDeck();}
+    screen('cutscene');
+    cl(localStorage.guild+localStorage[localStorage.guild+'Story']);
+    dialogue(localStorage.guild+localStorage[localStorage.guild+'Story']);
+    next_monster_level = Math.min(Math.floor(parseInt(storyLevel)/3), 14);
+    next_monster = pickRandomProperty(monsters[next_monster_level]);
+    cl(next_monster);
+    }
+  else {
+    tell("No story mode yet.");
+    }
   }
   
 
@@ -517,7 +540,7 @@ function storyStart() {
 </div>
 
 <div id="cutscene">
-  <header><a href="javascript:screen('menu');" id="home"> &nbsp; </a>Story</header>
+  <header><a href="javascript:location.reload();" id="home"> &nbsp; </a>Story</header>
   <div id="speakerL"></div>
   <div id="speakerR"></div>
   <div id="dialogue"><span class="speaker"></span><p>Blah blah.</p></div>

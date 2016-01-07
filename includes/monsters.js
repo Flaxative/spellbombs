@@ -478,6 +478,7 @@ monsters['test'] = {
 var circle; var enemy;
 function initiateMonster(monster, level) {
   var battleNum = floors+1;
+  if(localStorage.mode=='story') {battleNum = parseInt(localStorage[localStorage.guild+'Story'])+1;}
   if(circle) {circle.unbind(); circle.remove();} // remove previous monster's attack routine
   enemy = window["monsters"][level][monster];
   $('#baddie').data('enemy', monster); 

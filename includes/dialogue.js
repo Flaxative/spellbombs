@@ -22,9 +22,11 @@ function dialogue(d) {
   
 // dictionary of dialogues
 var dialogues = {
-  C0: {name: 'Bert', text: 'Hello!', next: 'C01'},
-  C01: {name: 'Marx', text: 'Howdy!', side: 'R', clearL: false, callback: function() {bStart();}},
-  C1: {name: 'Marx', text: 'You won the first battle!', side: 'L', callback: function() {tell("Story mode isn't real yet unfortunately.");}},
+  C0: {name: 'Bert', text: 'Hello!', next: 'C0_1'},
+  C0_1: {name: 'Marx', text: 'Howdy!', side: 'R', clearL: false, callback: function() {bStart();}},
+  C1: {name: 'Marx', text: 'You won the first battle!', side: 'L', callback: function() {bStart();}},
+  C2: {name: 'Bert', text: 'You have now slain two monsters in story mode!', next: 'C2_1'},
+  C2_1: {name: 'Bert', text: "Let's see how far we can go with this.", callback: function() {bStart();}}
   
   }
   

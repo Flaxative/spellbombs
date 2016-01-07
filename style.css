@@ -72,6 +72,7 @@ MAIN MENU
 #menu .mode.normal {text-align: right; background: rgba(0,0,0,1) url(mode-normal.png) center center no-repeat; background-size: cover;}
 #menu .mode.story {text-align: left; background: rgba(0,0,0,1) url(mode-story.png) top center no-repeat; background-size: cover;}
 #menu .mode.survival {text-align: right; background: rgba(0,0,0,1) url(mode-survival.png) center center no-repeat; background-size: cover;}
+.mode.story span {display: block; text-indent: 10px; line-height: 0; font-size: 40%; font-family: 'Droid Sans', sans-serif;}
 
   
 /* =======
