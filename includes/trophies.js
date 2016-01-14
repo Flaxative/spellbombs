@@ -104,12 +104,12 @@ for (var i = 0; i < disciplines.length; i++) {
   trophies['AS'+disciplines[i]+'6'] = {name: br+' Bomber IV', text: 'Assemble 1000000 '+br+' spellbombs', tied: br+'Bomber', goal: 100000, req: 'AS'+disciplines[i]+'3'}
   }
   
-trophies.comboC = {name: 'Combustion Combo', text: 'Assemble 10 Combustion spellbombs in a row in one fight', tied: 'CombustionCombo', goal: 10, secret: true}
-trophies.comboM = {name: 'Metallurgy Combo', text: 'Assemble 10 Metallurgy spellbombs in a row in one fight', tied: 'MetallurgyCombo', goal: 10, secret: true}
-trophies.comboR = {name: 'Reanimation Combo', text: 'Assemble 10 Reanimation spellbombs in a row in one fight', tied: 'ReanimationCombo', goal: 10, secret: true}
-trophies.comboA = {name: 'Astrology Combo', text: 'Assemble 10 Astrology spellbombs in a row in one fight', tied: 'AstrologyCombo', goal: 10, secret: true}
-trophies.comboN = {name: 'Naturalism Combo', text: 'Assemble 10 Naturalism spellbombs in a row in one fight', tied: 'NaturalismCombo', goal: 10, secret: true}
-trophies.comboT = {name: 'Toxicology Combo', text: 'Assemble 10 Toxicology spellbombs in a row in one fight', tied: 'ToxicologyCombo', goal: 10, secret: true}
+trophies.comboC = {name: 'Combustion Combo', text: 'Assemble 10 Combustion spellbombs in a row in one fight'}
+trophies.comboM = {name: 'Metallurgy Combo', text: 'Assemble 10 Metallurgy spellbombs in a row in one fight'}
+trophies.comboR = {name: 'Reanimation Combo', text: 'Assemble 10 Reanimation spellbombs in a row in one fight'}
+trophies.comboA = {name: 'Astrology Combo', text: 'Assemble 10 Astrology spellbombs in a row in one fight'}
+trophies.comboN = {name: 'Naturalism Combo', text: 'Assemble 10 Naturalism spellbombs in a row in one fight'}
+trophies.comboT = {name: 'Toxicology Combo', text: 'Assemble 10 Toxicology spellbombs in a row in one fight'}
 
 // trophies for killing subtypes
 trophies.collector = {name: 'Collector', text: 'Kill 1 of each monster type', tied: 'collector', goal: subtypes.length}
