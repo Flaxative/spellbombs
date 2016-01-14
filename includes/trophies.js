@@ -24,8 +24,10 @@ if (localStorage.trophies) {
     localStorage.trophies = 0;
 }
 
+
 // init some stats
 if(!localStorage.collector) {localStorage.collector = 0;}
+if(!localStorage.dabbler) {localStorage.collector = 0;}
 if(!localStorage.sandbag) {localStorage.sandbag = 0;}
 if(!localStorage.resets) {localStorage.resets = 0;}
 if(!localStorage.AStory) {localStorage.AStory = 0;}
@@ -93,6 +95,7 @@ var disciplines = ['Combustion', 'Metallurgy', 'Reanimation', 'Astrology', 'Natu
 for (var i = 0; i < disciplines.length; i++) {
   var br = disciplines[i];
   if(!localStorage[br+"Bomber"]) {localStorage[br+"Bomber"]=0;}
+  localStorage[br+"Combo"]=0;
   trophies['AS'+disciplines[i]+'1'] = {name: br+' Bomber I', text: 'Assemble 10 '+br+' spellbombs', tied: br+'Bomber', goal: 10}
   trophies['AS'+disciplines[i]+'2'] = {name: br+' Bomber II', text: 'Assemble 100 '+br+' spellbombs', tied: br+'Bomber', goal: 100, req: 'AS'+disciplines[i]+'1'}
   trophies['AS'+disciplines[i]+'3'] = {name: br+' Bomber III', text: 'Assemble 1000 '+br+' spellbombs', tied: br+'Bomber', goal: 1000, req: 'AS'+disciplines[i]+'2'}
@@ -100,6 +103,13 @@ for (var i = 0; i < disciplines.length; i++) {
   trophies['AS'+disciplines[i]+'5'] = {name: br+' Bomber IV', text: 'Assemble 100000 '+br+' spellbombs', tied: br+'Bomber', goal: 10000, req: 'AS'+disciplines[i]+'3'}
   trophies['AS'+disciplines[i]+'6'] = {name: br+' Bomber IV', text: 'Assemble 1000000 '+br+' spellbombs', tied: br+'Bomber', goal: 100000, req: 'AS'+disciplines[i]+'3'}
   }
+  
+trophies.comboC = {name: 'Combustion Combo', text: 'Assemble 10 Combustion spellbombs in a row in one fight', tied: 'CombustionCombo', goal: 10, secret: true}
+trophies.comboM = {name: 'Metallurgy Combo', text: 'Assemble 10 Metallurgy spellbombs in a row in one fight', tied: 'MetallurgyCombo', goal: 10, secret: true}
+trophies.comboR = {name: 'Reanimation Combo', text: 'Assemble 10 Reanimation spellbombs in a row in one fight', tied: 'ReanimationCombo', goal: 10, secret: true}
+trophies.comboA = {name: 'Astrology Combo', text: 'Assemble 10 Astrology spellbombs in a row in one fight', tied: 'AstrologyCombo', goal: 10, secret: true}
+trophies.comboN = {name: 'Naturalism Combo', text: 'Assemble 10 Naturalism spellbombs in a row in one fight', tied: 'NaturalismCombo', goal: 10, secret: true}
+trophies.comboT = {name: 'Toxicology Combo', text: 'Assemble 10 Toxicology spellbombs in a row in one fight', tied: 'ToxicologyCombo', goal: 10, secret: true}
 
 // trophies for killing subtypes
 trophies.collector = {name: 'Collector', text: 'Kill 1 of each monster type', tied: 'collector', goal: subtypes.length}

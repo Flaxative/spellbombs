@@ -134,10 +134,23 @@ function bStart() {
   if(Game.catalyst) {speedUp(); Game.catalyst = false;}
   if(Game.azoth) {wither(-1); Game.azoth = false;}
   if(enemy.onSpawn) {enemy.onSpawn();}
+  for (var i = 0; i < disciplines.length; i++) {
+    var br = disciplines[i];
+    localStorage[br+"Combo"]=0;
+    }
   screen('battle');
   draw();
   $('#deckbuilder header span').first().html('This is your deck:');
   Game.start();
+  }
+ 
+function combos() {
+  cl("C "+localStorage.CombustionCombo);
+  cl("M "+localStorage.MetallurgyCombo);
+  cl("R "+localStorage.ReanimationCombo);
+  cl("A "+localStorage.AstrologyCombo);
+  cl("N "+localStorage.NaturalismCombo);
+  cl("T "+localStorage.ToxicologyCombo);
   }
  
 // catalyst foliage speeds up next monster

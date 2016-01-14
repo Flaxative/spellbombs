@@ -21,9 +21,19 @@ function assemblyTrophies(reagents) {
     var ing = disciplines[i].substr(0,1);
     if(reagents.indexOf(ing)>-1) {
       localStorage[disciplines[i]+"Bomber"] = parseInt(localStorage[disciplines[i]+"Bomber"])+1;
+      
       if(localStorage[disciplines[i]+"Bomber"]==1) {cl('from 0 to 1'); localStorage.dabbler = parseInt(localStorage.dabbler) + 1; hiScore('dabbler');}
+      if(localStorage.CombustionBomber>0&&localStorage.MetallurgyBomber>0&&localStorage.ReanimationBomber>0&&localStorage.AstrologyBomber>0&&localStorage.NaturalismBomber>0&&localStorage.ToxicologyBomber>0) {
+        awardTrophy('dabbler')
+        }
+      
       cl(ing+" was in your recipe!");
       hiScore(disciplines[i]+"Bomber");
+      localStorage[disciplines[i]+'Combo'] = parseInt(localStorage[disciplines[i]+'Combo'])+1;
+      hiScore(disciplines[i]+'Combo');
+      }
+    else {
+      localStorage[disciplines[i]+'Combo'] = 0;
       }
     }
   }
