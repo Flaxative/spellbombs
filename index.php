@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="style.css" type="text/css" />
   <link rel="shortcut icon" sizes="196×196" href="favicon.png" />
   
+  <meta name="google-signin-client_id" content="662253374676-fkft2ohs04qnbbhc1rru5n5kh71vlc7j.apps.googleusercontent.com">
+  
   <script type="text/javascript" src="includes/jquery.js"></script>
   <script type="text/javascript" src="includes/jquery.rotate.js"></script>
   <script type="text/javascript" src="includes/jquery.random.js"></script>
@@ -517,9 +519,34 @@ function storyStart() {
     }
   }
   
-
   
 
+// function for saving your game to a text string
+var saveFile = ''; var saveObj = new Object;
+function save() {
+  saveFile = JSON.stringify(localStorage);
+  console.log(saveFile);
+  saveObj = JSON.parse(saveFile);
+  console.log(saveObj);
+  }
+  
+function loadSave() {
+  assign(localStorage, saveObj);
+  tell("Loaded!");
+  }
+
+function onSignIn(googleUser) {
+  cl('success!');
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail());
+
+  // The ID token you need to pass to your backend:
+  var id_token = googleUser.getAuthResponse().id_token;
+  console.log("ID Token: " + id_token);
+}
   
 </script>
 
@@ -611,6 +638,47 @@ function storyStart() {
   <p> &nbsp; &nbsp; Resets: <span class="resets"></span></p>
   <p><a href="javascript:reset(true);">Hard Reset? (everything)</a></p>
   <p>Current version: <span class="version"></span></p>
+  
+  <div id="my-signin2"></div>
+  <script>
+    function onSuccess(googleUser) {
+      cl(googleUser);
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+      
+      var profile = googleUser.getBasicProfile();
+      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+      console.log('Name: ' + profile.getName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail());
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile',
+        'width': 200,
+        'height': 50,
+        'longtitle': false,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+  </script>
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+  
+  <p><a href="#" onclick="signOut();">Sign out</a></p>
+  <script>
+    function signOut() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+      });
+    }
+  </script>
+  
+  <p><a href="javascript:save();">Save Your Game</a></p>
 </div>
   
 <div id="battle">

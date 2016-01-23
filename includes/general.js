@@ -19,6 +19,12 @@ Object.size = function(obj) {
     }
   return size;
 };
+// assign properties of one object to another, useful for loading saves
+function assign(object, source) {
+  Object.keys(source).forEach(function(key) {
+    object[key] = source[key];
+  });
+}
 
 // change the screen view
 function screen(view) {
