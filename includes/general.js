@@ -73,12 +73,14 @@ function goldUp(gp) {
   localStorage.gold = parseInt(localStorage.gold) + parseInt(gp);
   if(gp<-999) {awardTrophy('RP4');}
   if(localStorage.gold==1337) {awardTrophy('leet');}
-  //if(parseInt(localStorage.gold)>9999) {localStorage.gold = 9999;}
   displayGold();
   }
   
 function displayGold() {
-  if(parseInt(localStorage.gold)>999999999) {
+  if(parseInt(localStorage.gold)>999999999999) {
+    gp2 = Math.floor(parseInt(localStorage.gold)/1000000000000)+'T';
+    } 
+  else if(parseInt(localStorage.gold)>999999999) {
     gp2 = Math.floor(parseInt(localStorage.gold)/1000000000)+'B';
     } 
   else if(parseInt(localStorage.gold)>999999) {
