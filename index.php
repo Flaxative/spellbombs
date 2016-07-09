@@ -115,6 +115,15 @@ Game.start = function() {
   Game.interval = setInterval(Game.update, Game.frameDuration);
   }
 
+function setMaxHp() {
+  var max = 40;
+  // check bonus from trophies
+  var bonus = 1 + parseInt(localStorage.trophies)/100;
+  max = Math.floor(max * bonus);
+  $('#you .hp').data('max', max).text(max);
+    
+  }
+
 // functions to start and end battle;
 var battling = false;
 function bStart() {
@@ -317,6 +326,13 @@ function showPause() {
 function showWin(level) {
   $('#victory').remove();
   var gp = calcGold(level);
+  // bonus from trophies
+  console.log(gp);
+  var bonus = 1 + parseInt(localStorage.trophies)/100;
+  gp = Math.floor(gp * bonus);
+  console.log(gp);
+  goldUp(gp);
+  //cl("Pocketed "+gp+" gold pieces!");
   var victoryScreen = '<div id="victory" class="won"><h1>VICTORY!</h1><p>You found '+gp+' gold!</p><a href="#"><img src="treasure.png" /><br />click to proceed</a></div>';
   $('body').append(victoryScreen);
   $('#victory').click(function(e) {e.preventDefault(); victory(gp)});
@@ -339,9 +355,7 @@ function showWin(level) {
   
 function victory(gp) {
   $('#battle').hide();
-    $('#victory').unbind().addClass('clicked').fadeOut(400, function() {$('#victory').remove();});
-  //cl("Pocketed "+gp+" gold pieces!");
-  goldUp(gp);
+  $('#victory').unbind().addClass('clicked').fadeOut(400, function() {$('#victory').remove();});
   screen('deckbuilder');
   initiatePicks();
   }
@@ -511,6 +525,7 @@ function pickMode() {
   }
   
 function survivalStart() {
+  setMaxHp();
   localStorage.mode = 'survival';
   $('#battle header').append(' <span>(Survival)</span>');
   tell("Survival mode enabled. Earn double gold, but no healing between battles!");
@@ -518,6 +533,7 @@ function survivalStart() {
   }
 
 function normalStart() {
+  setMaxHp();
   localStorage.mode = 'normal';
   //tell("Normal mode enabled. No special rules.");
   bStart();
@@ -610,7 +626,7 @@ function loadSave() {
   <div class="stat">Normal Depth<br /><span class="floors">0</span></div>
   <div class="stat">Survival Depth<br /><span class="roomsSurvival">0</span></div> 
   <div class="case-head">Achievements</div> -->
-  <div class="case-head">Some secret trophies won't display<br />until you've won them.</div>
+  <div class="case-head"><small>Some secret trophies won't display until you've won them.</small><p onclick="tell('Each trophy you\'ve won improves your health, damage, healing, and gold find!');">Trophy Bonus: <span class="trophies"></span>% <img src="info.png" /></p></div>
 </div>
 
 <div id="shop">

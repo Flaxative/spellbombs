@@ -24,6 +24,13 @@ function damage(actor, amount, disciplines, bypass, lifesteal) {
   
   var hp = $('#'+actor+' .hp').text();          // get old hp
   var maxHp = $('#'+actor+' .hp').data('max');  // get max hp
+  
+  // check bonus from trophies
+  if(actor=='baddie') {
+    var bonus = 1 + parseInt(localStorage.trophies)/100;
+    amount = Math.floor(amount * bonus);
+    }
+  
   hp -= amount;                                 // change hp
   // cl('dealing '+amount+' damage');              // debug
   if(hp<0) {hp = 0;} if(hp>maxHp) {hp = maxHp;} // hp can't go over max or under 0
@@ -98,6 +105,11 @@ function heal(x, actor) {
   actor = typeof actor !== 'undefined' ? actor : 'you';
   var hp = parseInt($('#'+actor+' .hp').text());          // get old hp
   var maxHp = $('#'+actor+' .hp').data('max');  // get max hp
+  // check bonus from trophies
+  if(actor=='you') {
+    var bonus = 1 + parseInt(localStorage.trophies)/100;
+    x = Math.floor(x * bonus);
+    }
   hp += x;                                 // change hp
   if(hp<0) {hp = 0;} if(hp>maxHp) {hp = maxHp;} // hp can't go over max or under 0
   var pasento = hp/maxHp*100; // manipulate hp bar

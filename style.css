@@ -121,6 +121,9 @@ TROPHIES
 .case-head {padding: 4px 0; text-align: center;}
 #trophies .stat {text-align: center;}
 #trophies .stat {margin: 1%;}
+#trophies .case-head small {font-size: 80%;}
+#trophies .case-head p {margin: 10px 0 2px 0;}
+#trophies .case-head p img {height: 20px; vertical-align: -20%;}
 
 .trophy {margin: 10px; padding: 4px 10px 4px 42px; border-radius: 5px;
   background: rgba(221,221,221,.4) url(trophy-black.png) 6px center no-repeat; background-size: 30px 84%;
