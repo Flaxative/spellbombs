@@ -518,6 +518,15 @@ BATTLE: OVERLAYS
 .paused p {margin: 30px 0;}
 #victory.paused a {font-family: 'Droid Sans', sans-serif;}
 
+.mask {
+  position: absolute;
+  top: 5%; left: 10%; right: 10%; bottom: 50%;
+  z-index: 99;
+  display: none;
+  background: transparent url(leshii-mask.png) no-repeat center center;
+  background-size: contain;
+  }
+
 /* =======
 SETTINGS
 ======= */

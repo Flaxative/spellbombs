@@ -277,7 +277,8 @@ function protector() {
   if(enemy["protector"]) {
     var roll = randomInt(1,5);
     if(roll==5) {
-      warn("PROTECTOR!"); // should replace this tell with a more visual cue ultimatly
+      //warn("PROTECTOR!"); // should replace this tell with a more visual cue ultimatly
+      $('<div class="mask"></div>').appendTo('body').fadeIn(100).delay(800).fadeOut(300, function() {$(this).remove()});
       return true;
       }
     else {return false;}
