@@ -41,6 +41,7 @@ var next_monster = pickRandomProperty(monsters[next_monster_level]);
 var Game = new Object; // object to control battle stuff
 // Game timing
 Game.fps = 40; Game.ms = 0; Game.frameDuration = (1000 / Game.fps);
+Game.paused = false;
 // Draw stuff
 Game.drawSpeed = 3000; Game.lastDraw = 0;
 // Enemy attack stuff
@@ -50,51 +51,54 @@ Game.stunned = false;
 Game.jagged = false; Game.corrosive = false; Game.sunbliss = false; 
 Game.organ = false; Game.catalyst = false; Game.azoth = false; 
 // Don't let this happen to you
-Game.pStunned = false;
+Game.pStunned = false; 
 // update function
 Game.update = function() {
-  Game.ms += 25;
-  //if(Game.pStunned) {Game.lastDraw +=25;} // disable drawing when stunned; pretty punishing
-  if(Game.ms>=(Game.lastDraw+Game.drawSpeed)) {
-    Game.lastDraw = Game.ms; draw();
-    // cl("Draw a card"); // debug
+  if(!Game.paused) {
+    Game.ms += 25;
+    //if(Game.pStunned) {Game.lastDraw +=25;} // disable drawing when stunned; pretty punishing
+    if(Game.ms>=(Game.lastDraw+Game.drawSpeed)) {
+      Game.lastDraw = Game.ms; draw();
+      // cl("Draw a card"); // debug
+      }
+    if(!Game.stunned) {
+    var atkProg = (Game.ms - Game.lastAttack);
+    var atkProgPasento = (atkProg/Game.eAttackSpeed);
+    circle.circleProgress({'value': atkProgPasento});
+      }
+    else {
+      Game.lastAttack += 25;
+      }
+    if(Game.ms>=(Game.lastAttack+Game.eAttackSpeed)) {
+      Game.lastAttack = Game.ms; cl("monster hit you!");
+      //cl(Game.eAttackSpeed);
+      var dmgAmount = parseInt($('#baddie .damage span').text());
+      Game.lifesteal = false; Game.bypass = false;
+      if(enemy.bypass) {Game.bypass = true;}
+      if(enemy.lifesteal) {Game.lifesteal = true;}
+      damage('you', dmgAmount, '', Game.bypass, Game.lifesteal); 
+      if(enemy.onAtk) {enemy.onAtk();}
+      }
+    if(Game.doubling) {
+      Game.doublingDuration -=25; 
+      if(Game.doublingDuration<=0) {Game.doubling=false; $('.effect.Engine.Breath').remove();}
+      }
+    if(Game.runningOrgans) {
+      Game.organDuration -=25; 
+      if(Game.organDuration<=0) {Game.runningOrgans=false; $('.effect.Running.Organs').remove();}
+      }
+    if(Game.thorns) {
+      Game.thornsDuration -=25; 
+      if(Game.thornsDuration<=0) {Game.thorns=0; $('.effect.Thorns').remove();}
+      }
+    if(isInt(Game.ms/enemy.regenSpeed)&&enemy.regenerates) {poisonDmg(-enemy.regenerates);}
     }
-  if(!Game.stunned) {
-  var atkProg = (Game.ms - Game.lastAttack);
-  var atkProgPasento = (atkProg/Game.eAttackSpeed);
-  circle.circleProgress({'value': atkProgPasento});
-    }
-  else {
-    Game.lastAttack += 25;
-    }
-  if(Game.ms>=(Game.lastAttack+Game.eAttackSpeed)) {
-    Game.lastAttack = Game.ms; cl("monster hit you!");
-    //cl(Game.eAttackSpeed);
-    var dmgAmount = parseInt($('#baddie .damage span').text());
-    Game.lifesteal = false; Game.bypass = false;
-    if(enemy.bypass) {Game.bypass = true;}
-    if(enemy.lifesteal) {Game.lifesteal = true;}
-    damage('you', dmgAmount, '', Game.bypass, Game.lifesteal); 
-    if(enemy.onAtk) {enemy.onAtk();}
-    }
-  if(Game.doubling) {
-    Game.doublingDuration -=25; 
-    if(Game.doublingDuration<=0) {Game.doubling=false; $('.effect.Engine.Breath').remove();}
-    }
-  if(Game.runningOrgans) {
-    Game.organDuration -=25; 
-    if(Game.organDuration<=0) {Game.runningOrgans=false; $('.effect.Running.Organs').remove();}
-    }
-  if(Game.thorns) {
-    Game.thornsDuration -=25; 
-    if(Game.thornsDuration<=0) {Game.thorns=0; $('.effect.Thorns').remove();}
-    }
-  if(isInt(Game.ms/enemy.regenSpeed)&&enemy.regenerates) {poisonDmg(-enemy.regenerates);}
   //cl(Game.ms); //debug
   }
 // initiate function
 Game.start = function() {
   Game.drawSpeed = 3000;
+  Game.paused = false;
   Game.stunned = false; unStunPlayer(); checkRecipe();
   Game.pacifist = true;
   // engine breath reset
@@ -293,7 +297,8 @@ function bEnd(victory) {
   }
   
 function showLoss() {
-  var defeatScreen = '<div id="victory"><h1>DEFEAT</h1><p>You beat '+floors+' enemies.</p><a><img src="skull.png" /><!-- icon by freepik --><br />click to proceed</a></div>';
+  $('#victory').remove();
+  var defeatScreen = '<div id="victory" class="lost"><h1>DEFEAT</h1><p>You beat '+floors+' enemies.</p><a><img src="skull.png" /><!-- icon by freepik --><br />click to proceed</a></div>';
   $('body').append(defeatScreen);
   $('#victory').click(function(e) {
     e.preventDefault();
@@ -303,9 +308,16 @@ function showLoss() {
     });
   }
   
+function showPause() {
+  $('#victory').remove();
+  var pauseScreen = '<div id="victory" class="paused"><h1>PAUSED</h1><p><a href="javascript:resume();">Resume</a></p><p><a href="javascript:resign();">Surrender</a></div></p>';
+  $('body').append(pauseScreen);
+  }
+  
 function showWin(level) {
+  $('#victory').remove();
   var gp = calcGold(level);
-  var victoryScreen = '<div id="victory"><h1>VICTORY!</h1><p>You found '+gp+' gold!</p><a href="#"><img src="treasure.png" /><br />click to proceed</a></div>';
+  var victoryScreen = '<div id="victory" class="won"><h1>VICTORY!</h1><p>You found '+gp+' gold!</p><a href="#"><img src="treasure.png" /><br />click to proceed</a></div>';
   $('body').append(victoryScreen);
   $('#victory').click(function(e) {e.preventDefault(); victory(gp)});
   localStorage.kills = parseInt(localStorage.kills) + 1; $('.kills').html(localStorage.kills);
@@ -388,7 +400,21 @@ function promptTrash() {
   }
   
 // resign function kills you
-function resign() { bEnd(false); }
+function resign() { 
+  bEnd(false); 
+  }
+  
+// pause/resume
+function pause() { 
+  Game.paused = true;
+  $('#hand .reagent').pause();
+  showPause();
+  }
+function resume() {
+  Game.paused = false;
+  $('#hand .reagent').resume();
+  $('#victory').remove();
+  }
 
 // initiates starter known recipes
 function firstTime(discipline) {
@@ -401,6 +427,7 @@ function firstTime(discipline) {
 // let's go
 var battleTimers = [];
 $(document).ready(function() {
+  for (var i = 0; i < 10; i++) {history.pushState({page: 'menu'}, 'menu', '#');}
   versionCheck(1);
   $('.resets').html(localStorage.resets);
   if(localStorage.resets==1) {awardTrophy('R1');}
@@ -533,7 +560,11 @@ function loadSave() {
   tell("Loaded!");
   }
 
-  
+  window.onpopstate = function(event) {
+   // alert("location: " + document.location + ", state: " + JSON.stringify(event.state));
+   // if(event.state) {screen(event.state.page);} else {alert('nope');}
+  };
+
 </script>
 
   
@@ -544,7 +575,7 @@ function loadSave() {
   <a href="javascript:storyStart();" class="ninja mode story">STORY</a> 
   <a href="javascript:survivalStart();" class="ninja mode survival">SURVIVAL</a> 
   <a href="javascript:screen('shop');">SHOP</a>
-  <a href="javascript:screen('settings');">SETTINGS</a>
+  <a href="javascript:screen('settings'); ">SETTINGS</a>
   <div id="inventory">
     <div class="stat"><img src="coins.png" /> <span class="gold"></span></div>
     <div class="stat"><img src="C.png" class="guild" /></div>
@@ -619,7 +650,7 @@ function loadSave() {
 </div>
 
 <div id="settings">
-  <header><a href="javascript:screen('menu');" id="home"> &nbsp; </a>SETTINGS</header>
+  <header><a href="javascript:screen('menu'); " id="home"> &nbsp; </a>SETTINGS</header>
   <p><a href="javascript:reset();">Soft Reset? (guild choice, purchases, currency)</a></p>
   <p> &nbsp; &nbsp; Resets: <span class="resets"></span></p>
   <p><a href="javascript:reset(true);">Hard Reset? (everything)</a></p>
@@ -629,7 +660,7 @@ function loadSave() {
 </div>
   
 <div id="battle">
-  <header><a href="javascript:resign();" id="resign"> &nbsp; </a> Battle! <a href="javascript:bEnd(true);">win</a></header>
+  <header><a href="javascript:pause();" id="resign"> &nbsp; </a> Battle! <a href="javascript:bEnd(true);">win</a></header>
     
   <div id="baddie">
     <div class="title">Name</div>

@@ -28,6 +28,7 @@ function assign(object, source) {
 
 // change the screen view
 function screen(view) {
+  history.pushState({page: view}, view, '#'+view);
   cl("Changing to "+view+"!");
   $('#battle, #menu, #shop, #settings, #deckbuilder, #guilds, #trophies, #cutscene').hide();
   $('#'+view).show();

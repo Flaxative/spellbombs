@@ -48,21 +48,28 @@ MAIN MENU
   position: fixed !important; position: absolute;
   left: 0; right: 0; top: 0; bottom: 0;
   background: #000 url(card-back.png) center center no-repeat; background-size: cover;
+  box-shadow: 0 0 2px black inset;
   }
 
 #logo {background: transparent url(spellbomb-mania.png) center center no-repeat; background-size: 100% 100%;
   margin: 30px 10%; height: 200px; border: 2px solid #000;}
 
 #menu a {display: block; margin: 30px 10%; text-align: center;
-  color: #ffee9b; background:rgba(0,0,0,.6); padding: 10px; font-weight: bold;
-  font-family: 'Reenie Beanie', cursive; font-size: 2em; border: 2px solid #000;}
-#menu a:active {color:#ff0; background: rgba(0,0,0,1);}
+   padding: 10px; font-weight: bold;
+  font-family: 'Reenie Beanie', cursive; font-size: 2em; 
+  background:rgba(0,0,0,.6);
+  border: 2px solid #feff8d;
+  box-shadow: 0 0 2px black, 0 0 2px black inset;
+  color: #feff8d;   
+  }
+#menu a:active {color:#ff0; background: rgba(0,0,0,1); border-color: #ff0;}
 
 #inventory {
   position: fixed !important; position: absolute;
   left: 0; right: 0; bottom: 0; text-align: center;
   padding: 10px; background:rgba(0,0,0,.6); color: #fff;
   height: 30px; line-height: 30px; font-size: 20px;
+  /*box-shadow: 0 0 10px black;*/
   }
 #inventory img {display: inline-block; height: 30px; line-height: 38px; vertical-align: -9px;}
   #inventory .guild {background: #000; border: 2px solid #fff; border-radius: 17px; margin-top: -2px;}
@@ -383,16 +390,6 @@ BATTLE: COMBATANTS
 .hp {position: absolute; z-index: 5;}
 .hp + .portrait {margin-top: 50px;}
 
-#victory {position: fixed !important; position: absolute; z-index: 10;
-  top: 0; right: 0; bottom: 0; left: 0;
-  padding: 100px 20px; text-align: center; color: #fff;
-  background: rgba(80,80,80,.9);}
-#victory h1 {font-size: 4em; font-weight: bold; line-height: 1.2em;} 
-#victory h1, #victory a { font-family: 'Reenie Beanie', cursive; }
-#victory a {font-size: 2em; color: #ffee9b;}
-#victory.clicked {background:rgba(0,0,0,.9);}
-#victory.clicked a {color:#ff0;}
-
 #you .left {height: 0; width: 0; position: fixed !important; position: absolute; 
   left: 0; bottom: 0; z-index: 0;
   border-bottom: 40px solid rgba(0,0,0,.6);
@@ -483,6 +480,40 @@ BATTLE: COMBATANTS
   text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;
   }
 
+
+/* =======
+BATTLE: OVERLAYS
+======= */
+
+@keyframes pausedInset {
+  from {box-shadow: 0 0 30px #23f7ff inset;}
+  to {box-shadow: 0 0 50px #23f7ff inset;}
+  }
+@keyframes lostInset {
+  from {box-shadow: 0 0 30px #cb0000 inset;}
+  to {box-shadow: 0 0 50px #cb0000 inset;}
+  }
+
+#victory {position: fixed !important; position: absolute; z-index: 10;
+  top: 0; right: 0; bottom: 0; left: 0;
+  padding: 100px 20px; text-align: center; color: #fff;
+  background: rgba(80,80,80,.9);}
+#victory h1 {font-size: 4em; font-weight: bold; line-height: 1.2em;} 
+#victory h1, #victory a { font-family: 'Reenie Beanie', cursive; }
+#victory a {font-size: 2em; color: #ffee9b;}
+#victory.clicked {background:rgba(0,0,0,.9);}
+#victory.clicked a {color:#ff0;}
+
+#victory.paused {box-shadow: 0 0 20px #23f7ff inset;
+  animation-name: pausedInset; animation-duration: 2s; 
+  animation-iteration-count: infinite; animation-direction: alternate;}
+#victory.lost {box-shadow: 0 0 30px #cb0000 inset;
+  animation-name: lostInset; animation-duration: 2s; 
+  animation-iteration-count: infinite; animation-direction: alternate;
+  }
+
+.paused p {margin: 30px 0;}
+#victory.paused a {font-family: 'Droid Sans', sans-serif;}
 
 /* =======
 SETTINGS
