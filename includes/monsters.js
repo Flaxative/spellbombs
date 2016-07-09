@@ -477,6 +477,7 @@ monsters['test'] = {
 // initiate a monster
 var circle; var enemy;
 function initiateMonster(monster, level) {
+  $('.affix-overlay').remove();
   var battleNum = floors+1;
   if(localStorage.mode=='story') {battleNum = parseInt(localStorage[localStorage.guild+'Story'])+1;}
   if(circle) {circle.unbind(); circle.remove();} // remove previous monster's attack routine
@@ -493,6 +494,12 @@ function initiateMonster(monster, level) {
   $('#baddie .title').html(title);
   $('#baddie .hpbar .inner').stop().css('width', '100%');
   $('#baddie .portrait').html('<img src="portraits/'+monster+'.png" />');
+  
+  if(enemy.leveled) {
+    cl(getFirstWord(enemy.name));
+    $('#baddie .portrait').append('<div class="affix-overlay '+getFirstWord(enemy.name)+'"></div>');
+    }
+  
   $('#baddie .damage').html('<div id="circle"></div><span>'+dmg+'</span>');  
   $('#baddie .armor').text(armor);  
   $('#baddie .hp').html(hp).data('max', hp);  
@@ -542,6 +549,7 @@ function nextMonster(level) {
         monsters[level][next_monster].level += lvlDiff;
         monsters[level][next_monster].armor += Math.floor(lvlDiff/3);
         monsters[level][next_monster].name = affixes[lvlDiff] + ' ' + monsters[level][next_monster].name;
+        monsters[level][next_monster].leveled = 'true';
         }
       //cl(monsters[level]);    
       }

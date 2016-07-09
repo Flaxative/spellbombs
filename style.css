@@ -361,7 +361,17 @@ BATTLE: COMBATANTS
 #baddie {margin-top: 4px;}  
 #baddie, #you, #baddie table, #you table {width: 100%;}
 
-#baddie .portrait, #you .portrait {width: auto;}
+#baddie .portrait, #you .portrait {width: auto; position: relative;}
+.affix-overlay {position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(100,100,100,.5);}
+.affix-overlay.Angry {background: rgba(255,0,0,.2);}
+.affix-overlay.Veteran {background: rgba(0,255,0,.2);}
+.affix-overlay.Elite {background: rgba(255,255,150,.2);}
+.affix-overlay.Master {background: rgba(100,100,255,.2);}
+.affix-overlay.Super {background: rgba(0,255,255,.2);}
+.affix-overlay.Golden {background: rgba(255,255,0,.2);}
+.affix-overlay.Philosopher {background: rgba(255,150,255,.2);}
+.affix-overlay.Godly {background: rgba(255,200,200,.2);}
+
 #you .portrait img, #baddie .portrait img {max-width: 100%;}
 .portrait {border: 1px solid #000;
   margin: 0 10px -11px 10px; border-radius: 10px 10px 0 0; overflow: hidden;}
