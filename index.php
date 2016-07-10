@@ -14,6 +14,8 @@
   <script type="text/javascript" src="includes/jquery.hammer.js"></script>
   <script type="text/javascript" src="includes/circle-progress.js"></script>
   <script type="text/javascript" src="includes/jquery.pause.min.js"></script>
+  <script type="text/javascript" src="includes/velocity.min.js"></script>
+  <script>jQuery.fn.animate = jQuery.fn.velocity;</script>
   <script type="text/javascript" src="includes/general.js"></script>
   <script type="text/javascript" src="includes/recipes.js"></script>
   <script type="text/javascript" src="includes/reagents.js"></script>
