@@ -8,7 +8,6 @@
   <link rel="shortcut icon" sizes="196×196" href="favicon.png" />
   
   <script type="text/javascript" src="includes/jquery.js"></script>
-  <script type="text/javascript" src="includes/jquery.rotate.js"></script>
   <script type="text/javascript" src="includes/jquery.random.js"></script>
   <script type="text/javascript" src="includes/hammer.min.js"></script>
   <script type="text/javascript" src="includes/jquery.hammer.js"></script>

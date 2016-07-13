@@ -80,7 +80,7 @@ function statusEffect(name, id, positive, actor) {
   positive = typeof positive !== 'undefined' ? positive : 'helpful';
   $('#'+actor+' .status-effects').append('<div id="r'+id+'" class="effect '+positive+' '+name+'">'+name+'</div>');  
   var rotation = randomInt(-10, 10);
-  $('#r'+id).rotate(rotation);
+  $('#r'+id).velocity({rotateZ: rotation+'deg'}, 0);
   }
 
 // separate function for poison damage since damage hooks shouldn't apply
