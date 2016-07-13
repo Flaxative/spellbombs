@@ -441,6 +441,10 @@ function firstTime(discipline) {
 // let's go
 var battleTimers = [];
 $(document).ready(function() {
+    // disable right-click context menu
+    document.addEventListener("contextmenu", function(e){
+        e.preventDefault();
+    }, false);
   for (var i = 0; i < 10; i++) {history.pushState({page: 'menu'}, 'menu', '#');}
   versionCheck(1);
   $('.resets').html(localStorage.resets);
