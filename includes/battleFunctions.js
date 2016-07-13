@@ -58,7 +58,7 @@ function dSplat(actor, amount) {
   var rand = Math.floor(Math.random()*1000000000);
   $('body').append('<div id="r'+rand+'" class="splat dmg">-'+amount+'</div>'); 
   var rotation = randomInt(-10, 10);
-  $('#r'+rand).hide().offset(broPos).rotate(rotation).velocity('fadeIn', {duration: 50}).delay(750).velocity('fadeOut', {duration: 150, complete: function() {$(this).remove();} });
+  $('#r'+rand).hide().offset(broPos).velocity({rotateZ: rotation+'deg'}, 0).velocity('fadeIn', {duration: 50}).delay(750).velocity('fadeOut', {duration: 150, complete: function() {$(this).remove();} });
   //cl(actor+amount);
   }
 
@@ -70,7 +70,7 @@ function hSplat(actor, amount) {
   var rand = Math.floor(Math.random()*1000000000);
   $('body').append('<div id="r'+rand+'" class="splat hl">+'+amount+'</div>'); 
   var rotation = randomInt(-10, 10);
-  $('#r'+rand).hide().offset(broPos).rotate(rotation).velocity('fadeIn', {duration: 50}).delay(750).velocity('fadeOut', {duration: 150, complete: function() {$(this).remove();} });
+  $('#r'+rand).hide().offset(broPos).velocity({rotateZ: rotation+'deg'}, 0).velocity('fadeIn', {duration: 50}).delay(750).velocity('fadeOut', {duration: 150, complete: function() {$(this).remove();} });
   //cl(actor+amount);
   }
 
