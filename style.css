@@ -157,7 +157,7 @@ SHOPPE
 position: fixed !important; position: absolute; 
 bottom: 0; right: 0; left: 0;}
 .reagents-shop, .recipes-shop, .content-shop, .cosmetics-shop {display: none;}
-.reagents-shop, .recipes-shop {
+.reagents-shop, .recipes-shop, .content-shop, .cosmetics-shop {
   text-align: center; overflow-x: hidden; overflow-y: scroll;}
 
 #shop-tabs {font-size: 0; margin: -4px 0 0 0; 
@@ -170,6 +170,24 @@ border-bottom: 1px solid #000; border-top: 1px solid #000; }
 #shop-tabs .inner.selected {font-weight: bold; background: #22659f; color: #fff;}
 
 .shop-head {padding: 4px 0;}
+/* 
+.shop-head:after {
+    pointer-events: none;
+    content:'';
+    position:absolute;
+    left:-600%;
+    width:1300%;
+    padding-bottom:2000%;
+    top:10%;
+    margin-top: 0%;
+    margin-bottom: -2000%;
+    background:none;
+    border-radius:90%;
+    height: 0;
+    box-shadow: 0px 0px 0px 9999px teal;
+    z-index:-99;
+    }
+/* the above makes some weird visual effects, w/e */
 
 .bought:not(.face) {background: #ddd !important;}
 .bought img {opacity: .7;}
