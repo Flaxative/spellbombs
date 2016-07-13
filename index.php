@@ -3,7 +3,7 @@
   <title>Lab Mayhem: Spellbomb Mania</title>
   
   <link rel="stylesheet" href="includes/reset.css" type="text/css" />
-  <link href='https://fonts.googleapis.com/css?family=Reenie+Beanie|Droid+Sans' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Reenie+Beanie|Droid+Sans|Patrick+Hand' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="style.css" type="text/css" />
   <link rel="shortcut icon" sizes="196×196" href="favicon.png" />
   
@@ -621,7 +621,7 @@ function loadSave() {
 </div>
 
 <div id="trophies">
-  <header><a href="javascript:screen('menu');" id="home"> &nbsp; </a>Trophies (<span class="trophies"></span>/<span class="trophy-total">X</span>)</header>
+  <header><a href="javascript:screen('menu');" id="home"> &nbsp; </a><span>Trophies (<span class="trophies"></span>/<span class="trophy-total">X</span>)</span></header>
   <!-- <div class="case-head">High Scores</div> -->
   <!-- <div class="stat">Total Kills<br /><span class="kills">0</span></div>
   <div class="stat">Normal Depth<br /><span class="floors">0</span></div>
@@ -631,7 +631,7 @@ function loadSave() {
 </div>
 
 <div id="shop">
-  <header><a href="javascript:screen('menu');" id="home"> &nbsp; </a><div href="" id="currency" class="gold"></div> YE ALCHEMY SHOPPE</header>
+  <header><a href="javascript:screen('menu');" id="home"> &nbsp; </a><div href="" id="currency" class="gold"></div> <span>YE ALCHEMY SHOPPE</span></header>
   
   <div id="shop-tabs">
   <div class="wrapper"><a class="inner recipes" href="javascript:shopTab('recipes');" data-transition="pop">Recipes</a></div>
@@ -668,7 +668,7 @@ function loadSave() {
 </div>
 
 <div id="settings">
-  <header><a href="javascript:screen('menu'); " id="home"> &nbsp; </a>SETTINGS</header>
+  <header><a href="javascript:screen('menu'); " id="home"> &nbsp; </a><span>SETTINGS</span></header>
   <p><a href="javascript:reset();">Soft Reset? (guild choice, purchases, currency)</a></p>
   <p> &nbsp; &nbsp; Resets: <span class="resets"></span></p>
   <p><a href="javascript:reset(true);">Hard Reset? (everything)</a></p>

@@ -6,10 +6,19 @@ body {font-family: 'Droid Sans', sans-serif;}
 a {text-decoration: none;}
 .ninja {display: none !important;}
   
-header {padding: 8px; font-family: 'Reenie Beanie', cursive; 
-  font-size: 2em; font-weight: bold;
+header {padding: 8px; font-family: 'Patrick Hand', cursive; 
+  font-size: 28px; font-weight: bold; height: 32px; line-height: 32px;
   text-align: center; background: #e0e0e0; background: linear-gradient(#fbfbfb, #f5f5f5, #e0e0e0);
   box-shadow: 0px 0px 10px 0px #777; margin-bottom: 4px;}
+  
+header span {
+  background-color: #363636;
+  color: transparent;
+  text-shadow: 0px 2px 3px rgba(255,255,255,0.5);
+  -webkit-background-clip: text;
+     -moz-background-clip: text;
+          background-clip: text;
+          }
   
 td {vertical-align: top; padding: 4px;}
 /* exception */ td.bench {padding: 0; margin: 4px;}
@@ -232,7 +241,7 @@ border-bottom: 1px solid #000; border-top: 1px solid #000; }
 
 .recipes-shop .function {background:#fafafa; margin: -10px 20px 10px 20px; padding: 3px 0 2px 0; 
   font-size: 11px; border-radius: 0 0 5px 5px; border: 1px solid #888; border-top: none;
-  box-shadow: 0 2px 4px 0 #ddd inset;
+  box-shadow: 0 2px 4px 0 #eaeaea inset;
   }
 .recipes-shop .function img {
   height: 16px; width: 16px; vertical-align: -2px; 
@@ -311,7 +320,13 @@ UI PIECES: BUTTONS, ETC.
 ======= */  
   #resign {height: 32px; width: 25px; display: block; float: left; background: transparent url(resign.png); margin-right: -25px;}
   #resign:active {background-position: -25px 0;}
-  #home {height: 30px; width: 38px; display: block; float: left; background: transparent url(home.png); margin-right: -38px;}
+  #home {
+    height: 30px; width: 38px; display: block; float: left; background: #fff url(home.png) no-repeat center;
+    /* give the button some form - maybe temporary, not sure if I love it */
+    border: 1px solid black; border-radius: 0 25% 25% 0 / 0 50% 50% 0; 
+    padding: 4px 14px 4px 6px; margin: -4px -58px 0 -10px;
+    box-shadow: 0 0 6px 0 #ddd inset;
+    }
   #currency {height: 32px; min-width: 40px; display: block; float: right; background: transparent url(coins.png) center center no-repeat; background-size: contain; margin-left: -100%; font-size: .7em; line-height: 1.5em; font-weight: normal; text-shadow: 1px 1px 1px #000, -1px -1px 1px #000, -1px 1px 1px #000, 1px -1px 1px #000; color: #ff0; text-align: center;}
 
   #currency {font-family: 'Droid Sans', sans-serif;}
