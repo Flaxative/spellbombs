@@ -643,6 +643,7 @@ function loadSave() {
   <div class="shop recipes-shop" data-shop="1">
     <!-- <p class='shop-head'>No recipes here yet.</p> -->
     <div class='shop-head'>
+      <span>Filter:</span>
       <div onclick="recipeFilter('C');" class="icon C " data-discipline="C"><img src="C.png" /></div>
       <div onclick="recipeFilter('M');" class="icon M " data-discipline="M"><img src="M.png" /></div>
       <div onclick="recipeFilter('R');" class="icon R " data-discipline="R"><img src="R.png" /></div>
