@@ -39,7 +39,7 @@ function screen(view) {
   $('#battle, #menu, #shop, #settings, #deckbuilder, #guilds, #trophies, #cutscene').hide();
   $('#'+view).show();
   if(view=='shop') {shopTab('recipes');}
-  if(view=='menu') {$('#logo, #extra').show(); $('#menu .mode').addClass('ninja');}
+  if(view=='menu') {$('#logo, #extra').show(); $('#menu .mode').addClass('lurking');}
   if(view=='trophies') {
     // set shop height so page doesn't scroll
     cl('hello');

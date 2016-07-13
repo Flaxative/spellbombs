@@ -5,6 +5,7 @@ html {}
 body {font-family: 'Droid Sans', sans-serif;}
 a {text-decoration: none;}
 .ninja {display: none !important;}
+.lurking {visibility: hidden !important;}
   
 header {padding: 8px; font-family: 'Patrick Hand', cursive; 
   font-size: 28px; font-weight: bold; height: 32px; line-height: 32px;
@@ -60,8 +61,15 @@ MAIN MENU
   box-shadow: 0 0 2px black inset;
   }
 
+#stupid {
+  position: absolute; left: 0; right: 0; top: 0;
+  }
+
 #logo {background: transparent url(spellbomb-mania.png) center center no-repeat; background-size: 100% 100%;
-  margin: 30px 10%; height: 200px; border: 2px solid #000;}
+  margin: 30px 10%; height: 200px; border: 2px solid #000;
+  }
+#extra {
+  }
 
 #menu a {display: block; margin: 30px 10%; text-align: center;
    padding: 10px; font-weight: bold;
@@ -72,6 +80,9 @@ MAIN MENU
   color: #feff8d;   
   }
 #menu a:active {color:#ff0; background: rgba(0,0,0,1); border-color: #ff0;}
+
+#menu a.half {display: inline-block; margin-top: 0;}
+#menu a.help {margin-left: 0;}
 
 #inventory {
   position: fixed !important; position: absolute;

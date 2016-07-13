@@ -447,7 +447,7 @@ $(document).ready(function() {
   $('.resets').html(localStorage.resets);
   if(localStorage.resets==1) {awardTrophy('R1');}
   // hitting the logo goes to mode selection
-  $('#logo').click(pickMode);
+  $('#logo, #extra').click(pickMode);
   // allow swiping between shops
   $('.recipes-shop').hammer().on("swipeleft", function() {shopTab('reagents');});
   $('.reagents-shop').hammer().on("swipeleft", function() {shopTab('content');})
@@ -521,8 +521,8 @@ function pickGuild(discipline) {
   }
   
 function pickMode() {
-  $('#logo, #extra').velocity("slideUp", { duration: 200 });
-  $('#menu .ninja').removeClass('ninja');
+  $('#stupid').velocity("slideUp", { duration: 200 });
+  $('#menu .lurking').removeClass('lurking');
   }
   
 function survivalStart() {
@@ -586,13 +586,16 @@ function loadSave() {
 
   
 <div id="menu">
-  <div id="logo"></div>
-  <a id="extra" href="javascript:pickMode();">FIGHT</a>
-  <a href="javascript:normalStart();" class="ninja mode normal">NORMAL</a> 
-  <a href="javascript:storyStart();" class="ninja mode story">STORY</a> 
-  <a href="javascript:survivalStart();" class="ninja mode survival">SURVIVAL</a> 
+  <div id="stupid">
+    <div id="logo"></div>
+    <a id="extra">FIGHT</a>
+  </div>
+  <a href="javascript:normalStart();" class="lurking mode normal">NORMAL</a> 
+  <a href="javascript:storyStart();" class="lurking mode story">STORY</a> 
+  <a href="javascript:survivalStart();" class="lurking mode survival">SURVIVAL</a> 
   <a href="javascript:screen('shop');">SHOP</a>
-  <a href="javascript:screen('settings'); ">SETTINGS</a>
+  <a class="half settings" href="javascript:screen('settings'); ">SETTINGS</a>
+  <a class="half help" href="javascript:screen('help'); ">HELP</a>
   <div id="inventory">
     <div class="stat"><img src="coins.png" /> <span class="gold"></span></div>
     <div class="stat"><img src="C.png" class="guild" /></div>
