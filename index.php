@@ -627,7 +627,7 @@ function loadSave() {
   <div class="stat">Normal Depth<br /><span class="floors">0</span></div>
   <div class="stat">Survival Depth<br /><span class="roomsSurvival">0</span></div> 
   <div class="case-head">Achievements</div> -->
-  <div class="case-head"><small>Some secret trophies won't display until you've won them.</small><p onclick="tell('Each trophy you\'ve won improves your health, damage, healing, and gold find!');">Trophy Bonus: <span class="trophies"></span>% <img src="info.png" /></p></div>
+  <div class="case-head"><small>Some secret trophies won't display until you've won them.</small><p onclick="tell('Each trophy you\'ve won improves your health, damage, healing, and gold find!');">Trophy Bonus: <span class="trophies"></span>% <img src="info-light.png" /></p></div>
 </div>
 
 <div id="shop">

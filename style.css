@@ -118,16 +118,37 @@ TROPHIES
 
 #trophies header {position: fixed; z-index: 5; top: 0; right: 0; left: 0; }
 #trophies {padding-top: 55px;}
-.case-head {padding: 4px 0; text-align: center;}
+
+.case-head {
+  text-align: center;
+  margin-top: -7px;
+  padding: 6px 0 60px 0; margin-bottom: -57px;
+  color: white;
+  background: blue url(dark_wall.png) repeat; position: relative; z-index: 0; overflow: show;
+  }
+.case-head:before {
+    content:"";
+    width: 100%;
+    height: 100%;
+    background: #f0f0f0; 
+    box-shadow: 0px 0px 10px 2px #f0f0f0; /* whoa there lol */
+    border-radius: 50% 50% 0px 0 / 30% 30% 0 0 ;
+    position: absolute; z-index: -3;
+    top: 50%; left: 0; overflow: show;
+    pointer-events: none;
+  }
+
+
 #trophies .stat {text-align: center;}
 #trophies .stat {margin: 1%;}
 #trophies .case-head small {font-size: 80%;}
-#trophies .case-head p {margin: 10px 0 2px 0;}
+#trophies .case-head p {margin: 10px 0 10px 0;}
 #trophies .case-head p img {height: 20px; vertical-align: -20%;}
 
 .trophy {margin: 10px; padding: 4px 10px 4px 42px; border-radius: 5px;
-  background: rgba(221,221,221,.4) url(trophy-black.png) 6px center no-repeat; background-size: 30px 84%;
+  background: rgba(230,230,230,1) url(trophy-black.png) 6px center no-repeat; background-size: 30px 84%;
   border: 1px solid #000; height: 30px; line-height: 20px; position: relative; 
+  box-shadow: 0px 0 1px 0 white;
   }
 .trophy.obtained {
   background: rgba(221,221,221,.4) url(trophy-black.png) 6px center no-repeat; background-size: 30px 84%;
@@ -153,7 +174,7 @@ TROPHIES
 SHOPPE
 ======= */
 
-.shop {text-align: center; background: #fff;
+.shop {text-align: center; background: #f0f0f0;
 position: fixed !important; position: absolute; 
 bottom: 0; right: 0; left: 0;}
 .reagents-shop, .recipes-shop, .content-shop, .cosmetics-shop {display: none;}
@@ -178,7 +199,8 @@ border-bottom: 1px solid #000; border-top: 1px solid #000; }
     content:"";
     width: 100%;
     height: 100%;
-    background: #fff;
+    background: #f0f0f0; 
+    box-shadow: 0px 0px 10px 2px #f0f0f0; /* whoa there lol */
     border-radius: 50% 50% 0px 0 / 30% 30% 0 0 ;
     position: absolute; z-index: -3;
     top: 50%; left: 0; overflow: show;
@@ -195,7 +217,7 @@ border-bottom: 1px solid #000; border-top: 1px solid #000; }
   background: #fafafa url('coins.png') 1px 1px no-repeat; border-radius: 0 0 8px 8px;
   background-size: 18px 18px; padding-left: 16px; margin: 8px -6px 0 -6px;}
 
-.reagents-shop .reagent {margin: 10px 10px 20px 10px;}
+.reagents-shop .reagent {margin: 10px 10px 20px 10px; box-shadow: 0px 0 1px 0 white;}
 .reagents-shop .reagent:last-child {margin-bottom: 30px;}
 
 .recipes-shop .recipe {text-align: left; padding: 8px; margin: 10px; border: 1px solid #000; box-shadow: 0px 0 1px 0 white;}
@@ -234,15 +256,17 @@ border-bottom: 1px solid #000; border-top: 1px solid #000; }
   }
   
 .face {
+  box-shadow: 0px 0 1px 0 white;
   display: inline-block; border: 1px solid #000;
-  margin: 10px 6px 20px 6px; vertical-align: middle;
+  margin: 10px 6px 10px 6px; vertical-align: middle;
   width: 100px; height: 100px;
   background: url(portraits/carelessExperiment.png) center center no-repeat;
   background-size: auto 150px; 
   }
 .face.enabled {
-  box-shadow: 0 0 10px 0px #7ed0dc, 0 0 10px 4px #7ed0dc, 1px 1px 0px 2px #90efff,
-  -1px 1px 0px 2px #90efff, 1px -1px 0px 2px #90efff, -1px -1px 0px 2px #90efff;
+  border: 3px solid #90efff;
+  box-shadow: 0 0 10px 0px #7ed0dc;
+  margin: 8px 4px 8px 4px;
   }
 .face .check {margin: -10px 0 -20px 80px; position: absolute; z-index: 1;}
 .face.bought:after {
