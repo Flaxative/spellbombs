@@ -36,7 +36,7 @@ function assign(object, source) {
 function screen(view) {
   history.pushState({page: view}, view, '#'+view);
   cl("Changing to "+view+"!");
-  $('#battle, #menu, #shop, #settings, #deckbuilder, #guilds, #trophies, #cutscene').hide();
+  $('#battle, #menu, #shop, #settings, #deckbuilder, #guilds, #trophies, #cutscene, #help').hide();
   $('#'+view).show();
   if(view=='shop') {shopTab('recipes');}
   if(view=='menu') {$('#logo, #extra').show(); $('#menu .mode').addClass('lurking');}
