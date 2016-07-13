@@ -55,9 +55,8 @@ function tell(message, styles) {
   styles = typeof styles !== 'undefined' ? styles : '';
   var duration = (message.length*24)+1000;
   var id = Math.floor((Math.random()*10000000000));
-  //if($('.tell').length) {$('.tell').stop().fadeOut(200, function() {$(this).remove();});}
-  $('<div class="tell id'+id+' '+styles+'">'+message+"</div>").appendTo('#messages').slideDown(100);
-  $('.id'+id).delay(duration).slideUp(100, function() {$(this).remove();});
+  $('<div class="tell id'+id+' '+styles+'">'+message+"</div>").appendTo('#messages').velocity('slideDown', {duration: 100});
+  $('.id'+id).delay(duration).velocity('slideUp', {duration: 100, complete: function() {$(this).remove();}});
   }
 function warn(message) {tell(message, 'warning');}
 function prize(message) {tell(message, 'prize');}

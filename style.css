@@ -288,15 +288,9 @@ DECKBUILDER
   position: fixed !important; position: absolute; bottom: 0; right: 0; left: 0;}
 
 .bottom {border-top: 1px solid #000;}
-.bottom.picks {display: none;}
-.bottom.start a {padding: 10px; 
-  font-family: 'Reenie Beanie', cursive; font-size: 2em; 
-  font-weight: bold; text-align: center;
-  display: block;
-  }
 
-.bottom.start a, #assemble {color: #ffee9b; background:#777;}
-.bottom.start a:active, #assemble:active {color:#ff0; background: #333;}
+#assemble {color: #ffee9b; background:#777;}
+#assemble:active {color:#ff0; background: #333;}
     
 #deck {width: auto; padding: 4px; text-align: center; }
 

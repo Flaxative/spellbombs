@@ -15,7 +15,8 @@
   <script type="text/javascript" src="includes/circle-progress.js"></script>
   <script type="text/javascript" src="includes/jquery.pause.min.js"></script>
   <script type="text/javascript" src="includes/velocity.min.js"></script>
-  <script>jQuery.fn.animate = jQuery.fn.velocity;</script>
+  <script>jQuery.fn.animate = jQuery.fn.velocity;
+  </script>
   <script type="text/javascript" src="includes/general.js"></script>
   <script type="text/javascript" src="includes/recipes.js"></script>
   <script type="text/javascript" src="includes/reagents.js"></script>
@@ -140,7 +141,7 @@ function bStart() {
   $("#you .damage span").text($("#you .damage").data('default'));
   if(localStorage.mode!="survival") {
     $("#you .hp").text($("#you .hp").data('max')); 
-    $('#you .hpbar .inner').stop().css('width', '100%');
+    $('#you .hpbar .inner').velocity('stop').css('width', '100%');
     }
   if(Game.jagged) {weaken(-2); Game.jagged = false;} // check if previous monster was jagged vinekin for damage buff
   if(Game.corrosive) {shareDesecrator(); Game.corrosive = false;}
@@ -222,33 +223,31 @@ function draw() {
   if($('#deck .reagent').length) { // draw if deck is open
     $('#deck .reagent').first().prependTo('#hand')
     .css('position', 'absolute').css('left', '-70px')
+    // this is the stuff to manage clicking on the card
     .click(function() {
       if(!$(this).hasClass('curse')) {
         $(this).unbind().find('.icon').clone().prependTo('#bench');
         jokers();
         }
-  
       // send off the card in style
-      $(this).stop().animate({
-        'left':handWidth+'px', 
-        'opacity':.2,
-        'height': '40px',
-        marginTop: '14px' 
-        }, 400);
-      if($(this).hasClass('vape')) {
+      $(this).velocity('stop')
+      .velocity({ opacity: 0.2, height: '40px', marginTop: '14px', 'left': handWidth+'px' }, {duration: 400}) 
+        ;
+      if($(this).hasClass('vape')) { // if it's a vape reagent, destroy it
         //cl('vaping'); //debug 
-        $(this).fadeOut(100, function() {$(this).remove();});
+        $(this).velocity("fadeOut", { duration: 400, complete: function() {$(this).remove();} });//.fadeOut(100, function() {$(this).remove();});
         }
-      else {
+      else { // else, discard it
         //cl('discarding'); //debug
-        $(this).fadeOut(100, function() {$(this).prependTo('#discard');});
+        $(this).velocity("fadeOut", { duration: 400, complete: function() {$(this).prependTo('#discard');} });
         }
-        
+      // max 3 reagents :)
       while($('#bench .icon').length>3) {$('#bench .icon').last().remove();}
       checkRecipe();
       })
+      // the next bit sends the card scurrying across the screen
   .animate({'left': handWidth+'px'}, 10000, 'linear', function() {
-    $(this).prependTo('#discard').stop().unbind();
+    $(this).prependTo('#discard').velocity('stop').unbind();
     });
   }
   else { // shuffle discards into deck and begin drawing again
@@ -265,11 +264,11 @@ function draw() {
   }
 
 // discard all cards to clean up the fight
-function discardAll() {$('#hand .reagent').unbind().stop().appendTo('#discard');}
+function discardAll() {$('#hand .reagent').unbind().velocity('stop').appendTo('#discard');}
 // clear all CSS changes on cards when we reshuffle them into the deck
 function shuffleDiscards() {
   $('#discard .reagent').each(function(){
-    $(this).unbind().stop().css('display', '').css('margin-top', '')
+    $(this).unbind().velocity('stop').css('display', '').css('margin-top', '')
     .css('left', '').css('position', '').css('opacity', '')
     .css('marginTop', '').css('height', '')
     .appendTo('#deck');
@@ -281,7 +280,7 @@ function bEnd(victory) {
   battling = false; clearInterval(Game.interval);
   for (var timer in battleTimers) { clearTimeout(battleTimers[timer]); }
   battleTimers = [];
-  $('.splat').stop().remove();
+  $('.splat').velocity('stop').remove();
   //clearInterval(drawLoop);          // clear draw loop
   discardAll(); shuffleDiscards();  // shuffle all cards back into deck
   $('#bench .icon').remove(); if(circle) {circle.remove();}  // clear active stuff in battle
@@ -373,7 +372,8 @@ function initiatePicks() {
     i++;
     }
   $('#picks .reagent').addClass('focus').click(function() {
-    $('.bottom.picks').fadeOut(100);
+    $('#picks .reagent').unbind();
+    $('.bottom.picks').velocity('fadeOut', {duration: 100});
     $(this).appendTo($('#deck')).removeClass('focus').unbind();
     $('#picks').html('');
     if($('#deck .reagent').length>12) {promptTrash();}
@@ -385,8 +385,7 @@ function initiatePicks() {
       else {bStart();}
       }
     });
-  $('.bottom.start').hide();
-  $('.bottom.picks').show();
+  $('.bottom.picks').velocity({opacity: 1}, {display: 'block'});
   
   if(localStorage.mode!='story') {
     next_monster_level = Math.min(Math.floor(floors/3), 14);
@@ -397,7 +396,7 @@ function initiatePicks() {
   }
   
 function promptTrash() {
-  //cl('triggering'); //debug
+  cl('triggering'); //debug
   $('#deckbuilder header span').first().html('Trash a card');
   tell('Max deck size is 12. Click a reagent to trash it from your deck.');
   $('#deck .reagent').addClass('focus').click(function() {
@@ -522,7 +521,7 @@ function pickGuild(discipline) {
   }
   
 function pickMode() {
-  $('#logo, #extra').slideUp(200);
+  $('#logo, #extra').velocity("slideUp", { duration: 200 });
   $('#menu .ninja').removeClass('ninja');
   }
   
@@ -727,9 +726,6 @@ function loadSave() {
   <div class="next">
     Next Enemy: <span></span>
   </div>
-  </div>
-  <div class="bottom start">
-  <a href="javascript:bStart();">ENTER DUNGEON</a>
   </div>
   <div class="bottom picks">
   <header>Select a card to add:</header>
