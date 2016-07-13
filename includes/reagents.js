@@ -3,9 +3,11 @@ var basic_reagents = ['C', 'M', 'R', 'A', 'N', 'T', 'J'];
 //var basic_reagents = ['N', 'M', 'C' /*, '1'*/]; // for testing
 var ingredients = ['C', 'M', 'R', 'A', 'N', 'T'];
 
-var other_reagents = ['JJ', 'CJ', 'MJ', 'RJ', 'AJ', 'NJ', 'TJ', 'CC', 'CM', 'CR', 'CA', 'CN', 'CT', 'MM', 'MR', 'MA', 'MN', 'MT', 'RR', 'RA', 'RN', 'RT', 'AA', 'AN', 'AT', 'NN', 'NT', 'TT', 'CC', 'CM', 'CR', 'CA', 'CN', 'CT', 'MM', 'MR', 'MA', 'MN', 'MT', 'RR', 'RA', 'RN', 'RT', 'AA', 'AN', 'AT', 'NN', 'NT', 'TT', /*'CCr', 'CMr', 'CRr', 'CAr', 'CNr', 'CTr', 'MMr', 'MRr', 'MAr', 'MNr', 'MTr', 'RRr', 'RAr', 'RNr', 'RTr', 'AAr', 'ANr', 'ATr', 'NNr', 'NTr', 'TTr'*/];
+var other_reagents = ['JJ', 'CJ', 'MJ', 'RJ', 'AJ', 'NJ', 'TJ', 'CC', 'CM', 'CR', 'CA', 'CN', 'CT', 'MM', 'MR', 'MA', 'MN', 'MT', 'RR', 'RA', 'RN', 'RT', 'AA', 'AN', 'AT', 'NN', 'NT', 'TT' /*, 'CC', 'CM', 'CR', 'CA', 'CN', 'CT', 'MM', 'MR', 'MA', 'MN', 'MT', 'RR', 'RA', 'RN', 'RT', 'AA', 'AN', 'AT', 'NN', 'NT', 'TT', *//*'CCr', 'CMr', 'CRr', 'CAr', 'CNr', 'CTr', 'MMr', 'MRr', 'MAr', 'MNr', 'MTr', 'RRr', 'RAr', 'RNr', 'RTr', 'AAr', 'ANr', 'ATr', 'NNr', 'NTr', 'TTr'*/];
 
+// establish which reagents can be bought
 var buyable_reagents = ['CJr', 'MJr', 'RJr', 'AJr', 'NJr', 'TJr', 'JJr', 'CCr', 'CMr', 'CRr', 'CAr', 'CNr', 'CTr', 'MMr', 'MRr', 'MAr', 'MNr', 'MTr', 'RRr', 'RAr', 'RNr', 'RTr', 'AAr', 'ANr', 'ATr', 'NNr', 'NTr', 'TTr'];
+// on initiation of the game, push all saved reagent purchases into the 'other_reagents' array
 var buyableLength = buyable_reagents.length;
 for (var i = 0; i < buyableLength; i++) {
   if(localStorage["bought"+buyable_reagents[i]]=='true') {
@@ -17,6 +19,43 @@ for (var i = 0; i < buyableLength; i++) {
 function resetReagents() {
   for (var i = 0; i < buyableLength; i++) {
     localStorage["bought"+buyable_reagents[i]] = false;
+    }
+  }
+
+function findUsefulReagent() {
+  var active_reagents = [];
+  active_reagents = active_reagents.concat(basic_reagents, other_reagents);
+  //cl(active_reagents); // debug
+  
+  var advanced_spellbombs = [];
+  for (var key in spellbombs) {
+  if(localStorage["known"+key]=='true'&&key.length>1) {
+    advanced_spellbombs.push(key);
+    }
+  }
+  //cl(advanced_spellbombs); // debug
+  
+  var random_recipe = advanced_spellbombs[randomInt(0, (advanced_spellbombs.length-1))];
+  //cl(random_recipe);
+  
+  var candidates = []
+  for (i = 0; i < active_reagents.length; i++) {
+    if(active_reagents[i].indexOf(random_recipe)>-1&&active_reagents[i].length>1) {
+      candidates.push(active_reagents[i]);
+      //cl(i);
+      //cl(candidates);
+      }
+    //cl(i);
+  }
+  
+  if(candidates.length>0) {
+    var finalist = candidates[randomInt(0, (candidates.length-1))];
+    //cl("finalist: "+finalist);
+    return(finalist);
+    }
+  else {
+    //cl('no valid reagents...');
+    return false;
     }
   }
 

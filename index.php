@@ -326,11 +326,9 @@ function showPause() {
 function showWin(level) {
   $('#victory').remove();
   var gp = calcGold(level);
-  // bonus from trophies
-  console.log(gp);
-  var bonus = 1 + parseInt(localStorage.trophies)/100;
-  gp = Math.floor(gp * bonus);
-  console.log(gp);
+    // bonus from trophies
+    var bonus = 1 + parseInt(localStorage.trophies)/100;
+    gp = Math.floor(gp * bonus);
   goldUp(gp);
   //cl("Pocketed "+gp+" gold pieces!");
   var victoryScreen = '<div id="victory" class="won"><h1>VICTORY!</h1><p>You found '+gp+' gold!</p><a href="#"><img src="treasure.png" /><br />click to proceed</a></div>';
@@ -364,12 +362,14 @@ function victory(gp) {
 function initiatePicks() {
   $('#picks').html('');
   var i = 0; var rand2;
-  while(i<4) {
+  while(i<3) {
     var rand = Math.random();
-    if(rand<.55) {rand2 = basic();} else {rand2 = other();}
+    if (rand < .10) {rand2 = findUsefulReagent(); if(!rand2) {rand2 = basic();}} else if(rand<.60) {rand2 = basic();} else {rand2 = other();}
     $('#picks').append(reAgent(rand2));
     i++;
     }
+  var useful = findUsefulReagent(); if(!useful) {useful = basic();}
+  $('#picks').append(reAgent(useful));
   $('#picks .reagent').addClass('focus').click(function() {
     $('#picks .reagent').unbind();
     $('.bottom.picks').velocity('fadeOut', {duration: 100});
