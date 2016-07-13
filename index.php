@@ -594,8 +594,10 @@ function loadSave() {
   <a href="javascript:storyStart();" class="lurking mode story">STORY</a> 
   <a href="javascript:survivalStart();" class="lurking mode survival">SURVIVAL</a> 
   <a href="javascript:screen('shop');">SHOP</a>
-  <a class="half settings" href="javascript:screen('settings'); ">SETTINGS</a>
-  <a class="half help" href="javascript:screen('help'); ">HELP</a>
+  <div id="menuflect">
+    <a class="half settings" href="javascript:screen('settings'); "><span>SETTINGS</span></a>
+    <a class="half help" href="javascript:screen('help'); "><span>HELP</span></a>
+  </div>
   <div id="inventory">
     <div class="stat"><img src="coins.png" /> <span class="gold"></span></div>
     <div class="stat"><img src="C.png" class="guild" /></div>
@@ -614,6 +616,11 @@ function loadSave() {
   <p><a href="javascript:pickGuild('A');">Zimuth (Astrology)</a> - Astrology is the weirdest discipline. Join Guild Zimuth if you like prophecies and magic.</p>
   <p><a href="javascript:pickGuild('N');">Eraya (Naturalism)</a> - Naturalism is a nurturing discipline. Join Guild Eraya if you like healing and buffing.</p>
   <p><a href="javascript:pickGuild('T');">Glurizol (Toxicology)</a> - Toxicology is the discipline of cruelty. Join Guild Glurizol if you like weakening your enemies.</p>
+</div>
+  
+<div id="help">
+  <header><a href="javascript:screen('menu');" id="home"> &nbsp; </a><span>HELP</span></header>
+  <p>Nothing here yet.</p>
 </div>
 
 <div id="cutscene">

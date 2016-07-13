@@ -28,7 +28,7 @@ td {vertical-align: top; padding: 4px;}
 .bottom .focus {box-shadow: 0 0 10px 0 #ff0;}
 
 /* hide screens */
-#deckbuilder, #battle, #menu, #guilds, #trophies, #cutscene {display: none;}
+#deckbuilder, #battle, #menu, #guilds, #trophies, #cutscene, #help {display: none;}
 
 
 #messages {position: absolute; top: 0; right: 1%; left: 1%;  z-index: 99; pointer-events:none;}
@@ -81,8 +81,10 @@ MAIN MENU
   }
 #menu a:active {color:#ff0; background: rgba(0,0,0,1); border-color: #ff0;}
 
-#menu a.half {display: inline-block; margin-top: 0;}
+#menuflect {display: flex; flex-direction: row; justify-content: center;}
+#menuflect a {margin-top: 0; display: inline-flex; flex: auto;}
 #menu a.help {margin-left: 0;}
+#menuflect a span {margin: 0 auto;}
 
 #inventory {
   position: fixed !important; position: absolute;
@@ -102,6 +104,12 @@ MAIN MENU
 .mode.story span {display: block; text-indent: 10px; line-height: 0; font-size: 40%; font-family: 'Droid Sans', sans-serif;}
 
   
+/* =======
+HELP SELECTION
+======= */
+
+#help p {margin: 10px;}
+
 /* =======
 GUILD SELECTION
 ======= */
