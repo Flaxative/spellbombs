@@ -106,10 +106,10 @@ function shopTab(shop) {
         left:'-100%', 
         right: '100%'
         }, 200, function() {
-        $(this).css('left', 0).css('right', 0).stop().hide();
+        $(this).stop().hide().css('left', 0).css('right', 0);
         //$('.'+shop+'-shop').show();
         });    // hide previous shop tab
-      $('.shop.'+shop+'-shop').show().css('left', '100%').css('right', '-100%').animate({
+      $('.shop.'+shop+'-shop').css('left', '100%').css('right', '-100%').show().animate({
         left:'0', 
         right: '0'
         }, 200, function() {
@@ -121,9 +121,9 @@ function shopTab(shop) {
         left:'100%', 
         right: '-100%'
         }, 200, function() {
-        $(this).css('left', 0).css('right', 0).stop().hide();
+        $(this).stop().hide().css('left', 0).css('right', 0);
         });    // hide previous shop tab   
-      $('.shop.'+shop+'-shop').show().css('left', '-100%').css('right', '100%').animate({
+      $('.shop.'+shop+'-shop').css('left', '-100%').css('right', '100%').show().animate({
         left:'0', 
         right: '0'
         }, 200, function() {

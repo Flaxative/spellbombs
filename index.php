@@ -453,11 +453,11 @@ $(document).ready(function() {
   $('#logo, #extra').click(pickMode);
   // allow swiping between shops
   $('.recipes-shop').hammer().on("swipeleft", function() {shopTab('reagents');});
-  $('.reagents-shop').hammer().on("swipeleft", function() {shopTab('content');})
+  $('.reagents-shop').hammer().on("swipeleft", function() {shopTab('upgrades');})
     .on("swiperight", function() {shopTab('recipes');});
-  $('.content-shop').hammer().on("swipeleft", function() {shopTab('cosmetics');})
+  $('.upgrades-shop').hammer().on("swipeleft", function() {shopTab('cosmetics');})
     .on("swiperight", function() {shopTab('reagents');});
-  $('.cosmetics-shop').hammer().on("swiperight", function() {shopTab('content');});
+  $('.cosmetics-shop').hammer().on("swiperight", function() {shopTab('upgrades');});
   
   // load account data
   setFace();
@@ -580,10 +580,11 @@ function loadSave() {
   tell("Loaded!");
   }
 
-  window.onpopstate = function(event) {
-   // alert("location: " + document.location + ", state: " + JSON.stringify(event.state));
-   // if(event.state) {screen(event.state.page);} else {alert('nope');}
-  };
+// not in use
+window.onpopstate = function(event) {
+ // alert("location: " + document.location + ", state: " + JSON.stringify(event.state));
+ // if(event.state) {screen(event.state.page);} else {alert('nope');}
+};
 
 </script>
 
@@ -605,13 +606,11 @@ function loadSave() {
     <div class="stat"><img src="coins.png" /> <span class="gold"></span></div>
     <div class="stat"><img src="C.png" class="guild" /></div>
     <div class="stat" onclick="screen('trophies');"><img src="trophy-white.png" /> <span class="trophies"></span></a></div>
-    <!-- <div class="stat"><img src="kills.png" />  <span class="kills"></span></div>
-    <div class="stat"><img src="floors.png" /> <span class="floors"></span></div> -->
   </div>
 </div>
   
 <div id="guilds">
-  <header>Welcome, Alchemist!</header>
+  <header><span>Welcome, Alchemist!</span></header>
   <p>Before you get started, join a guild. Each guild is associated with a different discipline of alchemy and encourages a different playstyle. Your choice will not prevent you from using other disciplines, and you can change it later.</p>
   <p><a href="javascript:pickGuild('C');">Abradacci (Combustion)</a> - Combustion is a fiery discipline. Join Guild Abradacci if you want to deal a lot of damage.</p>
   <p><a href="javascript:pickGuild('M');">Ogmite (Metallurgy)</a> - Metallurgy is a ponderous and solid discipline. Join Guild Ogmite if you like defenses and gold.</p>
@@ -647,9 +646,9 @@ function loadSave() {
   <header><a href="javascript:screen('menu');" id="home"> &nbsp; </a><div href="" id="currency" class="gold"></div> <span>YE ALCHEMY SHOPPE</span></header>
   
   <div id="shop-tabs">
-  <div class="wrapper"><a class="inner recipes" href="javascript:shopTab('recipes');" data-transition="pop">Recipes</a></div>
+  <div class="wrapper"><a class="inner recipes" href="javascript:shopTab('recipes');">Recipes</a></div>
   <div class="wrapper"><a class="inner reagents" href="javascript:shopTab('reagents');">Reagents</a></div>
-  <div class="wrapper"><a class="inner content" href="javascript:shopTab('content');">Content</a></div>
+  <div class="wrapper"><a class="inner upgrades" href="javascript:shopTab('upgrades');">Upgrades</a></div>
   <div class="wrapper"><a class="inner cosmetics" href="javascript:shopTab('cosmetics');">Cosmetics</a></div>
   </div>
   
@@ -668,11 +667,11 @@ function loadSave() {
   </div>
   
   <div class="shop reagents-shop" data-shop="2">
-    <p class='shop-head'>Upon purchase, these will drop after battles.</p>
+    <p class='shop-head'>Upon purchase, these may drop after battles.</p>
   </div>
   
-  <div class="shop content-shop" data-shop="3">
-    <p class='shop-head'>No contents here yet.</p>
+  <div class="shop upgrades-shop" data-shop="3">
+    <p class='shop-head'>No upgrades here yet.</p>
   </div>
   
   <div class="shop cosmetics-shop" data-shop="4">

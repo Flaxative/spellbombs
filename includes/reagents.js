@@ -22,6 +22,7 @@ function resetReagents() {
     }
   }
 
+// SMART LOOT SYSTEM :D
 function findUsefulReagent() {
   var active_reagents = [];
   active_reagents = active_reagents.concat(basic_reagents, other_reagents);
