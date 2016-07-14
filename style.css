@@ -145,7 +145,7 @@ TROPHIES
 ======= */
 
 #trophies header {position: fixed; z-index: 5; top: 0; right: 0; left: 0; }
-#trophies {padding-top: 55px;}
+#trophies {padding-top: 55px; background: #f0f0f0;}
 
 .case-head {
   text-align: center;
@@ -173,29 +173,46 @@ TROPHIES
 #trophies .case-head p {margin: 10px 0 10px 0;}
 #trophies .case-head p img {height: 20px; vertical-align: -20%;}
 
-.trophy {margin: 10px; padding: 4px 10px 4px 42px; border-radius: 5px;
-  background: rgba(230,230,230,1) url(trophy-black.png) 6px center no-repeat; background-size: 30px 84%;
+
+@keyframes barFlow {
+  0% {background: linear-gradient(#01f105, #5f5, #01f105, #01d904);}
+  25% {background: linear-gradient(#01f105, #6f6, #01f105, #01d904);}
+  50% {background: linear-gradient(#01f105, #7f7, #01f105, #01d904);}
+  75% {background: linear-gradient(#01f105, #6f6, #01f105, #01d904);}
+  100% {background: linear-gradient(#01f105, #5f5, #01f105, #01d904);}
+  }
+
+.trophy {margin: 10px; padding: 4px 10px 4px 42px; border-radius: 8px;
+  background: rgba(230,230,230,.4); background: linear-gradient(#ddd, #eee, #ddd);
   border: 1px solid #000; height: 30px; line-height: 20px; position: relative; 
-  box-shadow: 0px 0 1px 0 white;
+  box-shadow: 0px 0 1px 0 white, 0px -2px 6px 0 #aaa inset; overflow: hidden;
+  border-top-color: #555; border-right-color: #333; border-left-color: #333;
   }
 .trophy.obtained {
-  background: rgba(221,221,221,.4) url(trophy-black.png) 6px center no-repeat; background-size: 30px 84%;
+  background: rgba(240,240,240,.4);
   }
-.trophy:after {
+.trophy .bar {
   content: '\A';
-  position: absolute; background: rgba(0,255,0,1);
-  z-index: -1;
+  position: absolute; background: rgba(0,240,0,1); background: linear-gradient(#01f105, #5f5, #01f105, #01d904);
   top: 0; bottom: 0; left: 0; width: 0%;
+  box-shadow: 0px -2px 6px 0 #aaa inset;
+  
+  animation-name: barFlow; animation-duration: 1s; 
+  animation-iteration-count: infinite; animation-direction: alternate;
   }
-.trophy.obtained:after {width:100%;}
-.trophy span {text-transform: capitalize;}
-.trophy p {font-size: 60%; line-height: 10px;}
-.progress {float: right;}
+.trophy.obtained .bar {width:100%;}
+.trophy span {text-transform: capitalize; position: relative; z-index: 2;}
+.trophy p {font-size: 60%; line-height: 10px; position: relative; z-index: 2;}
+.progress {float: right; position: relative; z-index: 2;}
 
-.trophy img {
+.trophy img:not(.chalice) {
   height: 12px; width: 12px; vertical-align: 0px; 
   background: #000; border-radius: 6px;
   margin: -2px 0 -2px 2px;
+  }
+.trophy img.chalice {
+  width: 30px; height: 30px; z-index: 5;
+  position: absolute; top: 4px; left: 6px; bottom: 4px;
   }
 
 /* =======

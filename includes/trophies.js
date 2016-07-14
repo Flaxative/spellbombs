@@ -167,11 +167,11 @@ function listTrophies() {
     if(hasTrophy(key)) {status = 'obtained'; progress = 100;}
     //cl(prereq);
     if(!prereq||(prereq&&hasTrophy(prereq))) { // only show ones there's no prereq for, or that you have the prereq for
-      $('#trophies').append('<div class="trophy '+key+' '+status+'">'+trophyText+'</div>');
+      $('#trophies').append('<div class="trophy '+key+' '+status+'"><img src="trophy-black.png" class="chalice" /><div class="bar"></div>'+trophyText+'</div>');
       }
     //cl('.'+key+':after');
-    $('body').append('<style>.'+key+':after {width: '+progress+'%;}</style>');
-    $('.'+key+':after').hide();//.css('width', progress+'%');
+    $('body').append('<style>.'+key+' .bar {width: '+progress+'%;}</style>');
+    //$('.'+key+' .bar').hide();//.css('width', progress+'%');
     if(status=='obtained'&&hasTrophy(prereq)) {$('.'+prereq).hide();}
     if(status=='unobtained'&&trophies[key]["secret"]) {$('.'+key).addClass('ninja');}
     }
