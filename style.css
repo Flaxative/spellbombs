@@ -1,7 +1,15 @@
 /* =======
 GENERAL
 ======= */
-html {}
+html {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version, currently
+                                  not supported by any browser */
+  }
 body {font-family: 'Droid Sans', sans-serif;}
 a {text-decoration: none;}
 .ninja {display: none !important;}
