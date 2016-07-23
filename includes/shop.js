@@ -75,12 +75,25 @@ function recipeTrophies() {
     }
   }
   
+function formatRecipe(stuff) {
+  if(stuff.indexOf('%')>-1) {
+    var start = stuff.indexOf('%');
+    var end = stuff.indexOf(' ', start);
+    var number = stuff.substr((start+1), (end-start));
+    var bonus = 1 + parseInt(localStorage.trophies)/100;
+    var modified = Math.floor(number * bonus);
+    stuff = stuff.replace('%'+number, '<span class="modified">'+modified+'</span> ');
+    return stuff;
+    }
+  else {return stuff;}
+  }
+  
 // function to display a recipe
 function recipeDisplay(reagents) {
   if(localStorage["known"+reagents]=='true') {
     $('.recipes-shop').append(recipe(reagents));
     $('.recipes-shop .recipe.'+reagents).addClass('bought').prepend('<div class="check"></div>')
-    .after('<div class="function">'+spellbomb_descriptions[reagents]+'</div>');
+    .after('<div class="function">'+formatRecipe(spellbomb_descriptions[reagents])+'</div>');
     }
   else {
     var cost = 0;

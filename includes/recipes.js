@@ -90,7 +90,7 @@ function checkRecipe() {
     reagents += $(this).data('ingredient');
     }).clone().appendTo('#recipe');
   reagents = reagents.split('').sort().join('');
-  if(window["spellbomb_descriptions"][reagents]&&window["spellbombsKnown"][reagents]) {$('#recipe').append('<span>'+window["spellbomb_descriptions"][reagents]+'</span>');}
+  if(window["spellbomb_descriptions"][reagents]&&window["spellbombsKnown"][reagents]) {$('#recipe').append('<span>'+formatRecipe(window["spellbomb_descriptions"][reagents])+'</span>');}
   else if($('#recipe').html()) {$('#recipe').append('<span>'+"No known recipe."+'</span>');}
   else {$('#recipe').html('');}
   }
@@ -179,18 +179,18 @@ var spellbombsKnown = {
   
 // recipe descriptions
 var spellbomb_descriptions = {
-  C: "Deal 2 damage.",
-  CC: "Deal 5 damage.",
-  CCC: "Deal 10 damage.",
-  N: "Heal 2.",
-  NN: "Heal 5.",
-  NNN: "Heal 10.",
+  C: "Deal %2 damage.",
+  CC: "Deal %5 damage.",
+  CCC: "Deal %10 damage.",
+  N: "Heal %2 .",
+  NN: "Heal %5 .",
+  NNN: "Heal %10 .",
   M: "Armor +1 for 15s.",
   MM: "Armor +3 for 15s.",
   MMM: "Armor +5 for 15s.",
-  R: "Deal 1 damage; heal 1 per damage dealt.",
+  R: "Deal %1 damage; heal 1 per damage dealt.",
   RR: "Stun enemy for 5s.",
-  RRR: "Deal 4 damage; heal 1 per damage dealt.",
+  RRR: "Deal %4 damage; heal 1 per damage dealt.",
   A: "Prevent all damage for 1s.",
   AA: "Draw cards faster for 15s.",
   AAA: "Prevent all damage for 4s.",
@@ -198,9 +198,9 @@ var spellbomb_descriptions = {
   TT: "9 poison damage over 6s.",
   TTT: "15 poison damage over 6s.",
   CM: 'Double your damage for 15s.',
-  CR: "Deal 7 damage; take 3 damage.",
+  CR: "Deal %7 damage; take 3 damage.",
   CN: "Damage +2.",
-  CT: "Deal 4 damage; ignores armor.",
+  CT: "Deal %4 damage; ignores armor.",
   MN: "Damage +1; armor +1.",
   MR: "Lose 8 life; armor +4.",
   MT: "Enemy damage -4, but armor +2.",
@@ -211,9 +211,9 @@ var spellbomb_descriptions = {
   AC: "Enemy hits itself.",
   AR: 'Discard a card to heal 8.',
   AM: 'Armor +1 per card in hand.',
-  AN: 'Heal 2; avoid attack for 1s; +<img src="N.png" />',
+  AN: 'Heal %2 ; avoid attack for 1s; +<img src="N.png" />',
   AT: 'Decrease enemy damage randomly.',
-  AAC: 'Deal between 1-20 damage.',
+  AAC: 'Deal between 1% and 20% damage.',
   RT: 'Deal 2 damage when hit for 20s.',
   }
   
